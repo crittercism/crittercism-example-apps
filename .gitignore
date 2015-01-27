@@ -1,0 +1,6 @@
+.DS_Store
+*.xccheckout
+xcuserdata
+*.xccheckout
+!xcshareddata
+*.sw[l-p]
