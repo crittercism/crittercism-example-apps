@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.txNames = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"txNames"];
-    //    self.txNames = @[@"TxOne", @"TxTwo", @"Mornington Crescent"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,21 +36,19 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    
+
     return 5;
-    
+
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell" forIndexPath:indexPath];
-    
+
     NSString *txText = [NSString stringWithFormat:@"Tx \"%@\"", self.txNames[indexPath.section]];
-    
+
     if(indexPath.row == 0)
     {
         cell.textLabel.text = [NSString stringWithFormat:@"%@: Begin ", txText];
@@ -76,9 +73,9 @@
     {
         assert(NO);
     }
-    
+
     return cell;
-    
+
     assert(NO);
 }
 
@@ -103,7 +100,7 @@
 {
     NSLog(@"%@ %@", what, txName);
     [[GlobalLog sharedLog] logActionString:[NSString stringWithFormat:@"[Transactions]: %@ %@", what, txName]];
-    
+
     if([what isEqualToString:@"Begin"])
     {
         [Crittercism beginTransaction:txName];
@@ -124,8 +121,6 @@
             [Crittercism setValue:1 forTransaction:txName];
         else
             [Crittercism setValue:[Crittercism valueForTransaction:txName] + 1 forTransaction:txName];
-        
-        
     }
     else if([what isEqualToString:@"Get"])
     {
@@ -142,7 +137,7 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *what;
-    
+
     switch (indexPath.row) {
         case 0: what = @"Begin"; break;
         case 1: what = @"End"; break;
@@ -151,9 +146,9 @@
         case 4: what = @"Get"; break;
         default: assert(NO);
     }
-    
+
     NSString *txName = self.txNames[indexPath.section];
-    
+
     [self performCommand:what forTx:txName];
     [self performSelector:@selector(fadeSelection:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.3];
 }
