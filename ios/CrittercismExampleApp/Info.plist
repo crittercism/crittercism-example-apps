@@ -44,5 +44,12 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>txNames</key>
+	<array>
+		<string>Chase</string>
+		<string>Marshall</string>
+		<string>Rubble</string>
+		<string>Zuma</string>
+	</array>
 </dict>
 </plist>

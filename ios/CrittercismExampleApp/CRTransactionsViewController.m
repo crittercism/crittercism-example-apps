@@ -20,7 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.txNames = @[@"TxOne", @"TxTwo", @"Mornington Crescent"];
+    self.txNames = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"txNames"];
+    //    self.txNames = @[@"TxOne", @"TxTwo", @"Mornington Crescent"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,50 +33,52 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return self.txNames.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-
+    
+    
     return 5;
-
+    
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
+    
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell" forIndexPath:indexPath];
-
+    
+    NSString *txText = [NSString stringWithFormat:@"Tx \"%@\"", self.txNames[indexPath.section]];
+    
     if(indexPath.row == 0)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"Tx %li: Begin ",indexPath.section + 1];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: Begin ", txText];
     }
     else if(indexPath.row == 1)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"Tx %li: End  ",(long)indexPath.section + 1];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: End  ", txText];
     }
     else if(indexPath.row == 2)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"Tx %li: Fail ",(long)indexPath.section + 1];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: Fail ", txText];
     }
     else if(indexPath.row == 3)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"Tx %li: Add 1 ",(long)indexPath.section + 1];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: Add 1 ", txText];
     }
     else if(indexPath.row == 4)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"Tx %li: Get Value",(long)indexPath.section + 1];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: Get Value", txText];
     }
     else
     {
         assert(NO);
     }
-
+    
     return cell;
-
+    
     assert(NO);
 }
 
@@ -93,71 +96,71 @@
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Transaction %li:", (long)section];
+    return [NSString stringWithFormat:@"Transaction \"%@\":", self.txNames[section]];
 }
 
-- (void)hitButton:(UIButton *)sender
+- (void) performCommand:(NSString *)what forTx:(NSString *)txName
 {
-    NSLog(@"%@", sender.titleLabel.text);
-    [self performCommand:sender.titleLabel.text];
-}
-
-
-- (void) performCommand:(NSString *)command
-{
-    NSLog(@"%@", command);
-    [[GlobalLog sharedLog] logActionString:[NSString stringWithFormat:@"[Transactions]: %@", command]];
-
-    NSArray *components = [command componentsSeparatedByString:@" "];
-
-    NSString *transactionName = [self.txNames objectAtIndex:[[components objectAtIndex:1] intValue]-1];
-    NSString *what = [components objectAtIndex:2];
-
-
+    NSLog(@"%@ %@", what, txName);
+    [[GlobalLog sharedLog] logActionString:[NSString stringWithFormat:@"[Transactions]: %@ %@", what, txName]];
+    
     if([what isEqualToString:@"Begin"])
     {
-        [Crittercism beginTransaction:transactionName];
-
+        [Crittercism beginTransaction:txName];
+        
     }
     else if([what isEqualToString:@"End"])
     {
-        [Crittercism endTransaction:transactionName];
+        [Crittercism endTransaction:txName];
     }
     else if([what isEqualToString:@"Fail"])
     {
-        [Crittercism failTransaction:transactionName];
-
+        [Crittercism failTransaction:txName];
+        
     }
     else if([what isEqualToString:@"Add"])
     {
-        if([Crittercism valueForTransaction:transactionName] < 0)
-            [Crittercism setValue:1 forTransaction:transactionName];
+        if([Crittercism valueForTransaction:txName] < 0)
+            [Crittercism setValue:1 forTransaction:txName];
         else
-            [Crittercism setValue:[Crittercism valueForTransaction:transactionName] + 1 forTransaction:transactionName];
-
-
+            [Crittercism setValue:[Crittercism valueForTransaction:txName] + 1 forTransaction:txName];
+        
+        
     }
     else if([what isEqualToString:@"Get"])
     {
-        [[[UIAlertView alloc] initWithTitle:transactionName message:[NSString stringWithFormat:@"Transaction value = %i", [Crittercism valueForTransaction:transactionName]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:txName message:[NSString stringWithFormat:@"Transaction value = %i", [Crittercism valueForTransaction:txName]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
     else
     {
-        [[[UIAlertView alloc] initWithTitle:command message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        NSString *msg = [NSString stringWithFormat:@"%@ %@", what, txName];
+        [[[UIAlertView alloc] initWithTitle:msg message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    [self performCommand:[self.tView cellForRowAtIndexPath:indexPath].textLabel.text];
+    NSString *what;
+    
+    switch (indexPath.row) {
+        case 0: what = @"Begin"; break;
+        case 1: what = @"End"; break;
+        case 2: what = @"Fail"; break;
+        case 3: what = @"Add"; break;
+        case 4: what = @"Get"; break;
+        default: assert(NO);
+    }
+    
+    NSString *txName = self.txNames[indexPath.section];
+    
+    [self performCommand:what forTx:txName];
     [self performSelector:@selector(fadeSelection:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.3];
 }
 
 - (void) fadeSelection:(BOOL)animated
 {
-    NSIndexPath*    selection = [self.tView indexPathForSelectedRow];
+    NSIndexPath* selection = [self.tView indexPathForSelectedRow];
     if (selection) {
         [self.tView deselectRowAtIndexPath:selection animated:animated];
     }
