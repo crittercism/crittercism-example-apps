@@ -104,7 +104,6 @@
     if([what isEqualToString:@"Begin"])
     {
         [Crittercism beginTransaction:txName];
-        
     }
     else if([what isEqualToString:@"End"])
     {
@@ -113,7 +112,6 @@
     else if([what isEqualToString:@"Fail"])
     {
         [Crittercism failTransaction:txName];
-        
     }
     else if([what isEqualToString:@"Add"])
     {
