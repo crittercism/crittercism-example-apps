@@ -44,5 +44,12 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>txNames</key>
+	<array>
+		<string>Login</string>
+		<string>Browse</string>
+		<string>Reserve</string>
+		<string>Confirm</string>
+	</array>
 </dict>
 </plist>
