@@ -15,14 +15,14 @@
 #define kBreadcrumbsSection 2
 #define kOutOutStatus 3
 
-
 @interface CROtherViewController ()
-
+@property (nonatomic, strong) NSArray *usernames;
 @end
 
 @implementation CROtherViewController
 
 - (void)viewDidLoad {
+    _usernames = @[ @"Bob", @"Jim", @"Sue" ];
     [super viewDidLoad];
 }
 
@@ -38,20 +38,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    
-    if(section == kUsernameSection || section == kMetaDataSection)
-    {
+    if (section == kUsernameSection) {
+        return _usernames.count;
+    } else if (section == kMetaDataSection) {
         return 4;
-    }
-    
-    else if(section == kBreadcrumbsSection || section == kOutOutStatus)
-    {
+    } else if(section == kBreadcrumbsSection || section == kOutOutStatus) {
         return 3;
     }
     
     assert(NO);
-    
 }
 
 
@@ -63,30 +58,7 @@
     
     if(indexPath.section == kUsernameSection)
     {
-        
-        if(indexPath.row == 0)
-        {
-            cell.textLabel.text = [NSString stringWithFormat:@"Set Username: Bob"];
-        }
-        else if(indexPath.row == 1)
-        {
-            cell.textLabel.text = [NSString stringWithFormat:@"Set Username: Jim"];
-        }
-        else if(indexPath.row == 2)
-        {
-            cell.textLabel.text = [NSString stringWithFormat:@"Set Username: Sue"];
-        }
-        else if(indexPath.row == 3)
-        {
-            cell.textLabel.text = [NSString stringWithFormat:@"Check Username"];
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            cell.textLabel.textColor = [UIColor blueColor];
-        }
-        else
-        {
-            assert(NO);
-        }
-        
+        cell.textLabel.text = _usernames[indexPath.row];
         return cell;
     }
     else if(indexPath.section == kMetaDataSection)
@@ -185,11 +157,11 @@
 {
     if(section == kUsernameSection)
     {
-        return @"Username:";
+        return @"Set Username:";
     }
     else if(section == kMetaDataSection)
     {
-        return @"Metadata:";
+        return @"Set Metadata:";
     }
     else if(section == kBreadcrumbsSection)
     {
@@ -214,21 +186,8 @@
     NSArray *components = [command componentsSeparatedByString:@" "];
     
     NSString *uniqueThing = [components lastObject];
-    
-    
-    
-    if([uniqueThing isEqualToString:@"Bob"] || [uniqueThing isEqualToString:@"Sue"]  || [uniqueThing isEqualToString:@"Jim"]  )
-    {
-        [Crittercism setUsername:uniqueThing];
-    }
-    else if([uniqueThing isEqualToString:@"Username"])
-    {
-        //[[[UIAlertView alloc] initWithTitle:@"Username" message:[NSString stringWithFormat:@"Username value = %@", [Crittercism getUsername]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        
-        [[[UIAlertView alloc] initWithTitle:@"Missing SDK part" message:@"No getUsername: in SDK" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 
-    }
-    else if([uniqueThing isEqualToString:@"5"] || [uniqueThing isEqualToString:@"30"]  || [uniqueThing isEqualToString:@"50"]  )
+    if([uniqueThing isEqualToString:@"5"] || [uniqueThing isEqualToString:@"30"]  || [uniqueThing isEqualToString:@"50"]  )
     {
         [Crittercism setValue:uniqueThing forKey:@"Game Level"];
     }
@@ -276,8 +235,12 @@
 }
 
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == kUsernameSection) {
+        [Crittercism setUsername:_usernames[indexPath.row]];
+        return;
+    }
     
     [self performCommand:[self.tView cellForRowAtIndexPath:indexPath].textLabel.text];
     [self performSelector:@selector(fadeSelection:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.3];
