@@ -61,67 +61,43 @@
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     cell.textLabel.textColor = [UIColor blackColor];
     
-    if(indexPath.section == kUsernameSection)
-    {
+    if(indexPath.section == kUsernameSection) {
         cell.textLabel.text = _usernames[indexPath.row];
         return cell;
-    }
-    else if(indexPath.section == kMetaDataSection)
-    {
+    } else if(indexPath.section == kMetaDataSection) {
         cell.textLabel.text = _metadata[indexPath.row];
         return cell;
-    }
-    else if(indexPath.section == kBreadcrumbsSection)
-    {
+    } else if(indexPath.section == kBreadcrumbsSection) {
         cell.textLabel.text = [NSString stringWithFormat:@"Leave: '%@'", _breadcrumbs[indexPath.row]];
         return cell;
-    }
-    else if(indexPath.section == kOutOutStatus)
-    {
-                
-        if(indexPath.row == 0)
-        {
+    } else if(indexPath.section == kOutOutStatus) {
+        if(indexPath.row == 0) {
             cell.textLabel.text = [NSString stringWithFormat:@"Opt Out"];
-        }
-        else if(indexPath.row == 1)
-        {
+        } else if(indexPath.row == 1) {
             cell.textLabel.text = [NSString stringWithFormat:@"Opt In"];
-        }
-        else if(indexPath.row == 2)
-        {
+        } else if(indexPath.row == 2) {
             cell.textLabel.text = [NSString stringWithFormat:@"Check Opt-Out Status"];
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.textColor = [UIColor blueColor];
-        }
-        else
-        {
+        } else {
             assert(NO);
         }
         
         return cell;
     }
 
-
-    
     assert(NO);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if(section == kUsernameSection)
-    {
+    if(section == kUsernameSection) {
         return @"Set Username:";
-    }
-    else if(section == kMetaDataSection)
-    {
+    } else if(section == kMetaDataSection) {
         return @"Set Metadata:";
-    }
-    else if(section == kBreadcrumbsSection)
-    {
+    } else if(section == kBreadcrumbsSection) {
         return @"Leave Breadcrumb:";
-    }
-    else if(section == kOutOutStatus)
-    {
+    } else if(section == kOutOutStatus) {
         return @"Opt-out Status:";
     }
     
@@ -137,30 +113,23 @@
     
     NSString *uniqueThing = [components lastObject];
 
-    if([uniqueThing isEqualToString:@"Out"])
-    {
+    if([uniqueThing isEqualToString:@"Out"]) {
         [Crittercism setOptOutStatus:YES];
-    }
-    else if([uniqueThing isEqualToString:@"In"])
-    {
+    } else if([uniqueThing isEqualToString:@"In"]) {
         [Crittercism setOptOutStatus:NO];
-    }
-    else if([uniqueThing isEqualToString:@"Status"])
-    {
-        if([Crittercism getOptOutStatus])
-        {
+    } else if([uniqueThing isEqualToString:@"Status"]) {
+        if([Crittercism getOptOutStatus]) {
             [[[UIAlertView alloc] initWithTitle:@"OptOutStatus" message:@"is YES" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        }
-        else
-        {
-            
+        } else {
             [[[UIAlertView alloc] initWithTitle:@"OptOutStatus" message:@"is NO" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
         
-    }
-    else
-    {
-        [[[UIAlertView alloc] initWithTitle:command message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:command
+                                    message:@""
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
     }
 }
 
