@@ -18,6 +18,7 @@
 @interface CROtherViewController ()
 @property (nonatomic, strong) NSArray *usernames;
 @property (nonatomic, strong) NSArray *metadata;
+@property (nonatomic, strong) NSArray *breadcrumbs;
 @end
 
 @implementation CROtherViewController
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     _usernames = @[ @"Bob", @"Jim", @"Sue" ];
     _metadata = @[ @"5", @"30", @"50" ];
-    [super viewDidLoad];
+    _breadcrumbs = @[ @"hello world", @"abc", @"123" ];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +45,9 @@
         return _usernames.count;
     } else if (section == kMetaDataSection) {
         return _metadata.count;
-    } else if(section == kBreadcrumbsSection || section == kOutOutStatus) {
+    } else if (section == kBreadcrumbsSection) {
+        return _breadcrumbs.count;
+    } else if(section == kOutOutStatus) {
         return 3;
     }
     
@@ -70,24 +73,7 @@
     }
     else if(indexPath.section == kBreadcrumbsSection)
     {
-        
-        if(indexPath.row == 0)
-        {
-            cell.textLabel.text = [NSString stringWithFormat:@"Leave: 'hello world'"];
-        }
-        else if(indexPath.row == 1)
-        {
-            cell.textLabel.text = [NSString stringWithFormat:@"Leave: 'abc'"];
-        }
-        else if(indexPath.row == 2)
-        {
-            cell.textLabel.text = [NSString stringWithFormat:@"Leave: '123'"];
-        }
-        else
-        {
-            assert(NO);
-        }
-        
+        cell.textLabel.text = [NSString stringWithFormat:@"Leave: '%@'", _breadcrumbs[indexPath.row]];
         return cell;
     }
     else if(indexPath.section == kOutOutStatus)
@@ -120,18 +106,6 @@
     assert(NO);
 }
 
-- (void) executeCommand:(UIButton *)sender
-{
-    NSLog(@"%@", sender.titleLabel.text);
-}
-
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 44;
-}
-
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(section == kUsernameSection)
@@ -144,7 +118,7 @@
     }
     else if(section == kBreadcrumbsSection)
     {
-        return @"BreadCrumbs:";
+        return @"Leave Breadcrumb:";
     }
     else if(section == kOutOutStatus)
     {
@@ -163,14 +137,7 @@
     
     NSString *uniqueThing = [components lastObject];
 
-    if([uniqueThing hasSuffix:@"'"])
-    {
-        NSArray *components = [command componentsSeparatedByString:@"'"];
-        NSString *breadCrumb = [components objectAtIndex:1];
-        NSLog(@"Leaving breadcrumb %@", breadCrumb);
-        [Crittercism leaveBreadcrumb:breadCrumb];
-    }
-    else if([uniqueThing isEqualToString:@"Out"])
+    if([uniqueThing isEqualToString:@"Out"])
     {
         [Crittercism setOptOutStatus:YES];
     }
@@ -202,19 +169,22 @@
 {
     if (indexPath.section == kUsernameSection) {
         [Crittercism setUsername:_usernames[indexPath.row]];
-        return;
     } else if (indexPath.section == kMetaDataSection) {
         [Crittercism setValue:_metadata[indexPath.row] forKey:@"Game Level"];
-        return;
+    } else if (indexPath.section == kBreadcrumbsSection) {
+        [Crittercism leaveBreadcrumb:_breadcrumbs[indexPath.row]];
+    } else {
+        [self performCommand:[self.tView cellForRowAtIndexPath:indexPath].textLabel.text];
     }
-    
-    [self performCommand:[self.tView cellForRowAtIndexPath:indexPath].textLabel.text];
-    [self performSelector:@selector(fadeSelection:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.3];
+
+    [self performSelector:@selector(fadeSelection:)
+               withObject:@(YES)
+               afterDelay:0.3];
 }
 
 - (void)fadeSelection:(BOOL)animated
 {
-    NSIndexPath*    selection = [self.tView indexPathForSelectedRow];
+    NSIndexPath *selection = [self.tView indexPathForSelectedRow];
     if (selection) {
         [self.tView deselectRowAtIndexPath:selection animated:animated];
     }
