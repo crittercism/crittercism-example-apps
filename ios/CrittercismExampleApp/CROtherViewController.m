@@ -62,13 +62,16 @@
     cell.textLabel.textColor = [UIColor blackColor];
     
     if(indexPath.section == kUsernameSection) {
-        cell.textLabel.text = _usernames[indexPath.row];
+        NSString *username = _usernames[indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"Set Username: %@", username];
         return cell;
     } else if(indexPath.section == kMetaDataSection) {
-        cell.textLabel.text = _metadata[indexPath.row];
+        NSString *gameLevel = _metadata[indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"Set Level: %@", gameLevel];
         return cell;
     } else if(indexPath.section == kBreadcrumbsSection) {
-        cell.textLabel.text = [NSString stringWithFormat:@"Leave: '%@'", _breadcrumbs[indexPath.row]];
+        NSString *breadcrumb = _breadcrumbs[indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"Leave: '%@'", breadcrumb];
         return cell;
     } else if(indexPath.section == kOutOutStatus) {
         if(indexPath.row == 0) {
