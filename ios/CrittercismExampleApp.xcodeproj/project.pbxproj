@@ -38,13 +38,13 @@
 		20DAA0CC1A157E8500CC9216 /* CRTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CB1A157E8500CC9216 /* CRTransactionsViewController.m */; };
 		20DAA0CF1A157E9500CC9216 /* CROtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */; };
 		9F8D051C1A64BA2200273A7E /* UITabBarController+BarVisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8D051B1A64BA2200273A7E /* UITabBarController+BarVisibility.m */; };
+		9F90901D1AA0DE6B008A9846 /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9F90901B1AA0DE6B008A9846 /* dsym_upload.sh */; };
+		9F90901E1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F90901C1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a */; };
 		9FD4D72B1A6430380043667D /* CRTextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4D72A1A6430380043667D /* CRTextViewTableViewCell.m */; };
 		9FD4D72E1A6447C50043667D /* CRNSURLSessionDownloadTaskWithHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4D72D1A6447C50043667D /* CRNSURLSessionDownloadTaskWithHandler.m */; };
 		9FD4D7311A6449A70043667D /* CRNSURLSessionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4D7301A6449A70043667D /* CRNSURLSessionDelegate.m */; };
 		9FD4D7341A644AC70043667D /* CRNSURLSessionDataTaskWithDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4D7331A644AC70043667D /* CRNSURLSessionDataTaskWithDelegate.m */; };
 		9FD4D7371A64A3340043667D /* CRUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4D7361A64A3340043667D /* CRUIWebViewController.m */; };
-		9FE0DD7E1A8BD35E00E1FDC7 /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9FE0DD7C1A8BD35E00E1FDC7 /* dsym_upload.sh */; };
-		9FE0DD7F1A8BD35E00E1FDC7 /* libCrittercism_v5_1_2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE0DD7D1A8BD35E00E1FDC7 /* libCrittercism_v5_1_2.a */; };
 		9FF000101A61B61D001A2654 /* CRNetworkAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0000F1A61B61D001A2654 /* CRNetworkAPI.m */; };
 		9FF000131A61B800001A2654 /* CRNSURLConnectionWithDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF000121A61B800001A2654 /* CRNSURLConnectionWithDelegate.m */; };
 		9FF000161A61BBB8001A2654 /* CRNSURLConnectionWithAsyncHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF000151A61BBB8001A2654 /* CRNSURLConnectionWithAsyncHandler.m */; };
@@ -104,6 +104,12 @@
 		20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CROtherViewController.m; sourceTree = "<group>"; };
 		9F8D051A1A64BA2200273A7E /* UITabBarController+BarVisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+BarVisibility.h"; sourceTree = "<group>"; };
 		9F8D051B1A64BA2200273A7E /* UITabBarController+BarVisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+BarVisibility.m"; sourceTree = "<group>"; };
+		9F9090171AA0DE6B008A9846 /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
+		9F9090181AA0DE6B008A9846 /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
+		9F9090191AA0DE6B008A9846 /* CrittercismConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismConfig.h; sourceTree = "<group>"; };
+		9F90901A1AA0DE6B008A9846 /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
+		9F90901B1AA0DE6B008A9846 /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
+		9F90901C1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v5_1_3.a; sourceTree = "<group>"; };
 		9FD4D7291A6430380043667D /* CRTextViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTextViewTableViewCell.h; sourceTree = "<group>"; };
 		9FD4D72A1A6430380043667D /* CRTextViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTextViewTableViewCell.m; sourceTree = "<group>"; };
 		9FD4D72C1A6447C50043667D /* CRNSURLSessionDownloadTaskWithHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRNSURLSessionDownloadTaskWithHandler.h; sourceTree = "<group>"; };
@@ -114,12 +120,6 @@
 		9FD4D7331A644AC70043667D /* CRNSURLSessionDataTaskWithDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRNSURLSessionDataTaskWithDelegate.m; sourceTree = "<group>"; };
 		9FD4D7351A64A3340043667D /* CRUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIWebViewController.h; sourceTree = "<group>"; };
 		9FD4D7361A64A3340043667D /* CRUIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIWebViewController.m; sourceTree = "<group>"; };
-		9FE0DD781A8BD35E00E1FDC7 /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
-		9FE0DD791A8BD35E00E1FDC7 /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
-		9FE0DD7A1A8BD35E00E1FDC7 /* CrittercismConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismConfig.h; sourceTree = "<group>"; };
-		9FE0DD7B1A8BD35E00E1FDC7 /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
-		9FE0DD7C1A8BD35E00E1FDC7 /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
-		9FE0DD7D1A8BD35E00E1FDC7 /* libCrittercism_v5_1_2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v5_1_2.a; sourceTree = "<group>"; };
 		9FF0000E1A61B61D001A2654 /* CRNetworkAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRNetworkAPI.h; sourceTree = "<group>"; };
 		9FF0000F1A61B61D001A2654 /* CRNetworkAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRNetworkAPI.m; sourceTree = "<group>"; };
 		9FF000111A61B800001A2654 /* CRNSURLConnectionWithDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRNSURLConnectionWithDelegate.h; sourceTree = "<group>"; };
@@ -137,8 +137,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F90901E1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a in Frameworks */,
 				2080AE101A42424C00A0E815 /* SystemConfiguration.framework in Frameworks */,
-				9FE0DD7F1A8BD35E00E1FDC7 /* libCrittercism_v5_1_2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +228,7 @@
 		20DAA09A1A157DFC00CC9216 /* CrittercismExampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				9FE0DD771A8BD35E00E1FDC7 /* CrittercismSDK */,
+				9F9090161AA0DE6B008A9846 /* CrittercismSDK */,
 				9FF0000D1A61B5D7001A2654 /* Network APIs */,
 				2080ADEC1A3F96C400A0E815 /* Assets */,
 				2080ADD11A3F944A00A0E815 /* UtilsYo */,
@@ -266,15 +266,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9FE0DD771A8BD35E00E1FDC7 /* CrittercismSDK */ = {
+		9F9090161AA0DE6B008A9846 /* CrittercismSDK */ = {
 			isa = PBXGroup;
 			children = (
-				9FE0DD781A8BD35E00E1FDC7 /* CRFilter.h */,
-				9FE0DD791A8BD35E00E1FDC7 /* Crittercism.h */,
-				9FE0DD7A1A8BD35E00E1FDC7 /* CrittercismConfig.h */,
-				9FE0DD7B1A8BD35E00E1FDC7 /* CrittercismDelegate.h */,
-				9FE0DD7C1A8BD35E00E1FDC7 /* dsym_upload.sh */,
-				9FE0DD7D1A8BD35E00E1FDC7 /* libCrittercism_v5_1_2.a */,
+				9F9090171AA0DE6B008A9846 /* CRFilter.h */,
+				9F9090181AA0DE6B008A9846 /* Crittercism.h */,
+				9F9090191AA0DE6B008A9846 /* CrittercismConfig.h */,
+				9F90901A1AA0DE6B008A9846 /* CrittercismDelegate.h */,
+				9F90901B1AA0DE6B008A9846 /* dsym_upload.sh */,
+				9F90901C1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a */,
 			);
 			path = CrittercismSDK;
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 				20DAA0AF1A157DFC00CC9216 /* LaunchScreen.xib in Resources */,
 				20DAA0AC1A157DFC00CC9216 /* Images.xcassets in Resources */,
 				2080ADF61A3F9BB700A0E815 /* 110-bug@2x.png in Resources */,
-				9FE0DD7E1A8BD35E00E1FDC7 /* dsym_upload.sh in Resources */,
+				9F90901D1AA0DE6B008A9846 /* dsym_upload.sh in Resources */,
 				2080ADF21A3F9B2600A0E815 /* 22-skull-n-bones@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
