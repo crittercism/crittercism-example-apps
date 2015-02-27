@@ -61,7 +61,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell" forIndexPath:indexPath];
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
-    cell.textLabel.textColor = [UIColor blackColor];
+    cell.textLabel.textColor = [UIColor blueColor];
     
     if(indexPath.section == kUsernameSection) {
         NSString *username = _usernames[indexPath.row];
