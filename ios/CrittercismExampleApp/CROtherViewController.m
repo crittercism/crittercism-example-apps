@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *usernames;
 @property (nonatomic, strong) NSArray *metadata;
 @property (nonatomic, strong) NSArray *breadcrumbs;
+@property (nonatomic, strong) NSArray *optOut;
 @end
 
 @implementation CROtherViewController
@@ -27,6 +28,7 @@
     _usernames = @[ @"Bob", @"Jim", @"Sue" ];
     _metadata = @[ @"5", @"30", @"50" ];
     _breadcrumbs = @[ @"hello world", @"abc", @"123" ];
+    _optOut = @[ @"Opt Out", @"Opt In" ];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +50,7 @@
     } else if (section == kBreadcrumbsSection) {
         return _breadcrumbs.count;
     } else if(section == kOutOutStatus) {
-        return 3;
+        return _optOut.count;
     }
     
     assert(NO);
@@ -64,32 +66,17 @@
     if(indexPath.section == kUsernameSection) {
         NSString *username = _usernames[indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"Set Username: %@", username];
-        return cell;
     } else if(indexPath.section == kMetaDataSection) {
         NSString *gameLevel = _metadata[indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"Set Level: %@", gameLevel];
-        return cell;
     } else if(indexPath.section == kBreadcrumbsSection) {
         NSString *breadcrumb = _breadcrumbs[indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"Leave: '%@'", breadcrumb];
-        return cell;
     } else if(indexPath.section == kOutOutStatus) {
-        if(indexPath.row == 0) {
-            cell.textLabel.text = [NSString stringWithFormat:@"Opt Out"];
-        } else if(indexPath.row == 1) {
-            cell.textLabel.text = [NSString stringWithFormat:@"Opt In"];
-        } else if(indexPath.row == 2) {
-            cell.textLabel.text = [NSString stringWithFormat:@"Check Opt-Out Status"];
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            cell.textLabel.textColor = [UIColor blueColor];
-        } else {
-            assert(NO);
-        }
-        
-        return cell;
+        cell.textLabel.text = _optOut[indexPath.row];
     }
 
-    assert(NO);
+    return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -101,41 +88,12 @@
     } else if(section == kBreadcrumbsSection) {
         return @"Leave Breadcrumb:";
     } else if(section == kOutOutStatus) {
-        return @"Opt-out Status:";
+        BOOL isOptedOut = [Crittercism getOptOutStatus];
+        return [NSString stringWithFormat:@"Opt-out Status: %@", isOptedOut ? @"YES" : @"NO" ];
     }
     
     assert(NO);
 }
-
-- (void) performCommand:(NSString *)command
-{
-    [[GlobalLog sharedLog] logActionString:[NSString stringWithFormat:@"[Other]: %@", command]];
-
-    
-    NSArray *components = [command componentsSeparatedByString:@" "];
-    
-    NSString *uniqueThing = [components lastObject];
-
-    if([uniqueThing isEqualToString:@"Out"]) {
-        [Crittercism setOptOutStatus:YES];
-    } else if([uniqueThing isEqualToString:@"In"]) {
-        [Crittercism setOptOutStatus:NO];
-    } else if([uniqueThing isEqualToString:@"Status"]) {
-        if([Crittercism getOptOutStatus]) {
-            [[[UIAlertView alloc] initWithTitle:@"OptOutStatus" message:@"is YES" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        } else {
-            [[[UIAlertView alloc] initWithTitle:@"OptOutStatus" message:@"is NO" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        }
-        
-    } else {
-        [[[UIAlertView alloc] initWithTitle:command
-                                    message:@""
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
-    }
-}
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -145,8 +103,14 @@
         [Crittercism setValue:_metadata[indexPath.row] forKey:@"Game Level"];
     } else if (indexPath.section == kBreadcrumbsSection) {
         [Crittercism leaveBreadcrumb:_breadcrumbs[indexPath.row]];
-    } else {
-        [self performCommand:[self.tView cellForRowAtIndexPath:indexPath].textLabel.text];
+    } else if (indexPath.section == kOutOutStatus) {
+        if (indexPath.row == 0) {
+            [Crittercism setOptOutStatus:YES];
+        } else {
+            [Crittercism setOptOutStatus:NO];
+        }
+
+        [tableView reloadData];
     }
 
     [self performSelector:@selector(fadeSelection:)
