@@ -241,7 +241,7 @@
     NSString *url = @"";
     long bytes = 1;
     int latency = 0;
-    int code = 200;
+
     NSString *http = [self.protocol lowercaseString];
 
     if([action isEqualToString:@"GET"] || [action isEqualToString:@"POST"] )
@@ -275,7 +275,6 @@
     }
     else if([action isEqualToString:@"Do"])
     {
-        code = [[modifier stringByReplacingOccurrencesOfString:@"s" withString:@""] intValue];
         url = [NSString stringWithFormat:@"%@://httpbin.org/status/%@",http, modifier];
         action = @"GET";
     }

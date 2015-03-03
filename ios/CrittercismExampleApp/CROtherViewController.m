@@ -25,6 +25,7 @@
 @implementation CROtherViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     _usernames = @[ @"Bob", @"Jim", @"Sue" ];
     _metadata = @[ @"5", @"30", @"50" ];
     _breadcrumbs = @[ @"hello world", @"abc", @"123" ];
