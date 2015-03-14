@@ -19,7 +19,7 @@
 
 @interface CRErrorViewController ()
 @property (nonatomic, strong) CRCustomError *customError;
-
+@property (nonatomic, strong) NSArray *sectionTitles;
 @property (nonatomic, retain) NSString *traceCrash;
 @property (nonatomic, assign) BOOL recursingToDeath;
 @end
@@ -30,6 +30,12 @@
 {
     [super viewDidLoad];
     _customError = [[CRCustomError alloc] init];
+
+    _sectionTitles = @[ @"Force Crash:",
+                        @"Handle Exception:",
+                        @"Custom Stack Trace:"
+                       ];
+
     self.recursingToDeath = NO;
     [self.tView registerNib:[UINib nibWithNibName:@"ThreeButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"ThreeButtonTableViewCell"];
 }
@@ -42,7 +48,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return _sectionTitles.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -104,13 +110,19 @@
             ThreeButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreeButtonTableViewCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell.aButton setTitle:@"CLEAR" forState:UIControlStateNormal];
-            [cell.aButton addTarget:self action:@selector(didHitButton:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.aButton addTarget:_customError
+                             action:@selector(clear)
+                   forControlEvents:UIControlEventTouchUpInside];
 
             [cell.bButton setTitle:@"EXCEPTION" forState:UIControlStateNormal];
-            [cell.bButton addTarget:self action:@selector(didHitButton:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.bButton addTarget:_customError
+                             action:@selector(raiseException)
+                   forControlEvents:UIControlEventTouchUpInside];
 
             [cell.cButton setTitle:@"CRASH" forState:UIControlStateNormal];
-            [cell.cButton addTarget:self action:@selector(didHitButton:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.cButton addTarget:_customError
+                             action:@selector(crash)
+                   forControlEvents:UIControlEventTouchUpInside];
 
             return cell;
         } else {
@@ -164,13 +176,6 @@
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
                                          }
                                               origin:self.view];
-    } else if([command isEqualToString:@"CLEAR"]) {
-        [_customError clear];
-        [self.tView reloadData];
-    } else if([command isEqualToString:@"EXCEPTION"]) {
-        [_customError raiseException];
-    } else if ([command isEqualToString:@"CRASH"]) {
-        [_customError crash];
     } else if([command isEqualToString:@"Uncaught Exception"]) {
         NSLog(@"Raising custom uncaught exception");
         [NSException raise:@"Raised Exception" format:@"This is a forced uncaught exception"];
@@ -234,18 +239,11 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if(section == kCrashSection) {
-        return @"Force Crash:";
-    } else if (section == kExceptionSection) {
-        return @"Handle Exception:";
-    }
-
-    return @"Custom Stack Trace:";
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _sectionTitles[section];
 }
 
-- (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     if(section == kCrashSection && self.recursingToDeath) {
         return @"      ...app doomed... patience grasshopper...  ";
