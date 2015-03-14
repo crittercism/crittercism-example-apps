@@ -46,18 +46,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-
-    if(section == kCrashSection)
-    {
+    if(section == kCrashSection) {
         return 3;
-    }
-    else if(section == kExceptionSection)
-    {
+    } else if(section == kExceptionSection) {
         return 2;
-    }
-    else if(section == kCustomStackSection)
-    {
+    } else if(section == kCustomStackSection) {
         return [_customError numberOfFrames] + 2;
     }
 
@@ -65,67 +58,48 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == kCrashSection)
-    {
+    if(indexPath.section == kCrashSection) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
         cell.textLabel.textColor = [UIColor blueColor];
         cell.backgroundColor = [UIColor whiteColor];
 
-        if(indexPath.row == 0)
-        {
+        if(indexPath.row == 0) {
             cell.textLabel.text = @"Uncaught Exception";
-        }
-        else if(indexPath.row == 1)
-        {
+        } else if(indexPath.row == 1) {
             cell.textLabel.text = @"Segfault";
-
-        }
-        else if(indexPath.row == 2)
-        {
+        } else if(indexPath.row == 2) {
             cell.textLabel.text = @"Stack Overflow";
             if(self.recursingToDeath)
                 cell.backgroundColor = [UIColor lightGrayColor];
 
-        }
-        else
-        {
+        } else {
             assert(NO);
         }
 
         return cell;
-    }
-    else if(indexPath.section == kExceptionSection)
-    {
+    } else if(indexPath.section == kExceptionSection) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
         cell.textLabel.textColor = [UIColor blueColor];
 
-        if(indexPath.row == 0)
-        {
+        if(indexPath.row == 0) {
             cell.textLabel.text = @"Index Out Of Bounds";
-        }
-        else if(indexPath.row == 1)
-        {
+        } else if(indexPath.row == 1) {
             cell.textLabel.text = @"Log NSError";
-        }
-        else
-        {
+        } else {
             assert(NO);
         }
 
         return cell;
-    }
-    else if(indexPath.section == kCustomStackSection)
-    {
-
-        if(indexPath.row == [_customError numberOfFrames] + 1)
-        {
+    } else if(indexPath.section == kCustomStackSection) {
+        if(indexPath.row == [_customError numberOfFrames] + 1) {
 
             ThreeButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreeButtonTableViewCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -139,67 +113,45 @@
             [cell.cButton addTarget:self action:@selector(didHitButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell;
-
-        }
-        else
-        {
+        } else {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell" forIndexPath:indexPath];
             cell.textLabel.textAlignment = NSTextAlignmentLeft;
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 
-            if(indexPath.row == [_customError numberOfFrames])
-            {
+            if (indexPath.row == [_customError numberOfFrames]) {
                 cell.textLabel.textColor = [UIColor grayColor];
 
-                if([_customError numberOfFrames] == 0)
-                {
+                if([_customError numberOfFrames] == 0) {
                     cell.textLabel.text = @"Add Function..";
-
-                }
-                else
-                {
+                } else {
                     cell.textLabel.text = @"Add Another Function..";
-
                 }
-                //cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            }
-            else
-            {
+            } else {
                 cell.textLabel.text = [_customError frameAtIndex:indexPath.row];
                 cell.textLabel.textColor = [UIColor blackColor];
-
             }
+
             return cell;
         }
-
-
     }
 
     assert(NO);
 }
 
-- (void) didHitButton:(UIButton *)sender
-{
+- (void)didHitButton:(UIButton *)sender {
     sender.selected = YES;
     [self performCommand:sender.titleLabel.text];
     [self performSelector:@selector(unselectButton:) withObject:sender afterDelay:0.3];
 }
 
-- (void) unselectButton:(UIButton *)button
-{
+- (void)unselectButton:(UIButton *)button {
     button.selected = NO;
 }
 
-
-
-
-- (void) performCommand:(NSString *)command
-{
-    
+- (void)performCommand:(NSString *)command {
     [[GlobalLog sharedLog] logActionString:[NSString stringWithFormat:@"[Error]: %@", command]];
 
-    if([command hasPrefix:@"Add"])
-    {
+    if([command hasPrefix:@"Add"]) {
         NSArray *colors = [NSArray arrayWithObjects:@"Function A", @"Function B", @"Function C", @"Function D", nil];
 
         [ActionSheetStringPicker showPickerWithTitle:@"Pick a function"
@@ -212,73 +164,50 @@
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
                                          }
                                               origin:self.view];
-    }
-    else if([command isEqualToString:@"CLEAR"])
-    {
+    } else if([command isEqualToString:@"CLEAR"]) {
         [_customError clear];
         [self.tView reloadData];
-    }
-    else if([command isEqualToString:@"EXCEPTION"])
-    {
+    } else if([command isEqualToString:@"EXCEPTION"]) {
         [_customError raiseException];
-    }
-    else if ([command isEqualToString:@"CRASH"])
-    {
+    } else if ([command isEqualToString:@"CRASH"]) {
         [_customError crash];
-    }
-    else if([command isEqualToString:@"Uncaught Exception"])
-    {
+    } else if([command isEqualToString:@"Uncaught Exception"]) {
         NSLog(@"Raising custom uncaught exception");
         [NSException raise:@"Raised Exception" format:@"This is a forced uncaught exception"];
-    }
-    else if([command isEqualToString:@"Segfault"])
-    {
+    } else if([command isEqualToString:@"Segfault"]) {
         NSLog(@"Calling kill with SIGSEGV");
         kill(getpid(), SIGSEGV);
-    }
-    else if([command isEqualToString:@"Stack Overflow"])
-    {
+    } else if([command isEqualToString:@"Stack Overflow"]) {
         self.recursingToDeath = YES;
         [self.tView reloadData];
         [self performSelector:@selector(recurse) withObject:nil afterDelay:1];
 
-    }
-    else if([command isEqualToString:@"Index Out Of Bounds"])
-    {
-        @try
-        {
+    } else if([command isEqualToString:@"Index Out Of Bounds"]) {
+        @try {
             NSString *huh = @[][1];
             NSLog(@"be quiet warnings: %@", huh);
-        }
-        @catch (NSException *exception)
-        {
+        } @catch (NSException *exception) {
             NSLog(@"Logging exception: %@", [exception description]);
             [Crittercism logHandledException:exception];
         }
-    }
-    else if([command isEqualToString:@"Log NSError"])
-    {
+    } else if([command isEqualToString:@"Log NSError"]) {
         NSError *error = nil;
         [[NSFileManager defaultManager] removeItemAtPath:@"ThisFileDoesntExist" error:&error];
-        if (error)
-        {
+        if (error) {
             NSLog(@"Logging error: %@", [error localizedDescription]);
             [Crittercism logError:error];
         }
-    }
-    else
-    {
+    } else {
         [[[UIAlertView alloc] initWithTitle:command message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
 
-- (void) recurse
-{
+- (void)recurse {
     NSLog(@"Recursing infintely.. ");
     [self recurse];
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == kCustomStackSection && indexPath.row == [_customError numberOfFrames] + 1)
     {
@@ -298,35 +227,31 @@
     [self performSelector:@selector(fadeSelection:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.3];
 }
 
-- (void) fadeSelection:(BOOL)animated
-{
+- (void)fadeSelection:(BOOL)animated {
     NSIndexPath*    selection = [self.tView indexPathForSelectedRow];
     if (selection) {
         [self.tView deselectRowAtIndexPath:selection animated:animated];
     }
 }
 
-- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if(section == kCrashSection)
-    {
+    if(section == kCrashSection) {
         return @"Force Crash:";
-    }
-    else if (section == kExceptionSection)
-    {
+    } else if (section == kExceptionSection) {
         return @"Handle Exception:";
     }
+
     return @"Custom Stack Trace:";
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    if(section == kCrashSection && self.recursingToDeath)
-    {
+    if(section == kCrashSection && self.recursingToDeath) {
         return @"      ...app doomed... patience grasshopper...  ";
     }
+
     return nil;
 }
-
 
 @end
