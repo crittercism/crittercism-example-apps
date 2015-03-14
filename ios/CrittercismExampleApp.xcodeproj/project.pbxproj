@@ -37,6 +37,7 @@
 		20DAA0C91A157E7500CC9216 /* CRNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0C81A157E7500CC9216 /* CRNetworkViewController.m */; };
 		20DAA0CC1A157E8500CC9216 /* CRTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CB1A157E8500CC9216 /* CRTransactionsViewController.m */; };
 		20DAA0CF1A157E9500CC9216 /* CROtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */; };
+		9F5EACB31AB48DF3001CA533 /* CRCustomError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB21AB48DF3001CA533 /* CRCustomError.m */; };
 		9F8D051C1A64BA2200273A7E /* UITabBarController+BarVisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8D051B1A64BA2200273A7E /* UITabBarController+BarVisibility.m */; };
 		9F90901D1AA0DE6B008A9846 /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9F90901B1AA0DE6B008A9846 /* dsym_upload.sh */; };
 		9F90901E1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F90901C1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a */; };
@@ -102,6 +103,8 @@
 		20DAA0CB1A157E8500CC9216 /* CRTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTransactionsViewController.m; sourceTree = "<group>"; };
 		20DAA0CD1A157E9500CC9216 /* CROtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CROtherViewController.h; sourceTree = "<group>"; };
 		20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CROtherViewController.m; sourceTree = "<group>"; };
+		9F5EACB11AB48DF3001CA533 /* CRCustomError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCustomError.h; sourceTree = "<group>"; };
+		9F5EACB21AB48DF3001CA533 /* CRCustomError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCustomError.m; sourceTree = "<group>"; };
 		9F8D051A1A64BA2200273A7E /* UITabBarController+BarVisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+BarVisibility.h"; sourceTree = "<group>"; };
 		9F8D051B1A64BA2200273A7E /* UITabBarController+BarVisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+BarVisibility.m"; sourceTree = "<group>"; };
 		9F9090171AA0DE6B008A9846 /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 				9FD4D7361A64A3340043667D /* CRUIWebViewController.m */,
 				205013A51A69C85A0039BE78 /* CRConsoleViewControllerTableViewController.h */,
 				205013A61A69C85A0039BE78 /* CRConsoleViewControllerTableViewController.m */,
+				9F5EACB11AB48DF3001CA533 /* CRCustomError.h */,
+				9F5EACB21AB48DF3001CA533 /* CRCustomError.m */,
 			);
 			indentWidth = 4;
 			path = CrittercismExampleApp;
@@ -412,6 +417,7 @@
 				9FD4D7371A64A3340043667D /* CRUIWebViewController.m in Sources */,
 				2080ADE51A3F946800A0E815 /* ActionSheetDatePicker.m in Sources */,
 				9FD4D7341A644AC70043667D /* CRNSURLSessionDataTaskWithDelegate.m in Sources */,
+				9F5EACB31AB48DF3001CA533 /* CRCustomError.m in Sources */,
 				20DAA0CF1A157E9500CC9216 /* CROtherViewController.m in Sources */,
 				2080ADE61A3F946800A0E815 /* ActionSheetDistancePicker.m in Sources */,
 				9FF000131A61B800001A2654 /* CRNSURLConnectionWithDelegate.m in Sources */,

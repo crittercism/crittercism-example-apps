@@ -11,21 +11,17 @@
 #import "ActionSheetStringPicker.h"
 #import "Crittercism.h"
 #import "GlobalLog.h"
+#import "CRCustomError.h"
 
 #define kCrashSection 0
 #define kExceptionSection 1
 #define kCustomStackSection 2
 
-
-
-
-
 @interface CRErrorViewController ()
+@property (nonatomic, strong) CRCustomError *customError;
 
-@property (nonatomic, retain) NSMutableArray *trace;
 @property (nonatomic, retain) NSString *traceCrash;
 @property (nonatomic, assign) BOOL recursingToDeath;
-
 @end
 
 @implementation CRErrorViewController
@@ -33,8 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.trace = [NSMutableArray arrayWithArray:@[]];
+    _customError = [[CRCustomError alloc] init];
     self.recursingToDeath = NO;
     [self.tView registerNib:[UINib nibWithNibName:@"ThreeButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"ThreeButtonTableViewCell"];
 }
@@ -63,7 +58,7 @@
     }
     else if(section == kCustomStackSection)
     {
-        return [self.trace count] + 2;
+        return [_customError numberOfFrames] + 2;
     }
 
     assert(NO);
@@ -72,9 +67,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
-
     if(indexPath.section == kCrashSection)
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell" forIndexPath:indexPath];
@@ -132,7 +124,7 @@
     else if(indexPath.section == kCustomStackSection)
     {
 
-        if(indexPath.row == [self.trace count] + 1)
+        if(indexPath.row == [_customError numberOfFrames] + 1)
         {
 
             ThreeButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreeButtonTableViewCell" forIndexPath:indexPath];
@@ -155,11 +147,11 @@
             cell.textLabel.textAlignment = NSTextAlignmentLeft;
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 
-            if(indexPath.row == [self.trace count])
+            if(indexPath.row == [_customError numberOfFrames])
             {
                 cell.textLabel.textColor = [UIColor grayColor];
 
-                if([self.trace count] == 0)
+                if([_customError numberOfFrames] == 0)
                 {
                     cell.textLabel.text = @"Add Function..";
 
@@ -173,7 +165,7 @@
             }
             else
             {
-                cell.textLabel.text = [self.trace objectAtIndex:indexPath.row];
+                cell.textLabel.text = [_customError frameAtIndex:indexPath.row];
                 cell.textLabel.textColor = [UIColor blackColor];
 
             }
@@ -214,8 +206,7 @@
                                                 rows:colors
                                     initialSelection:0
                                            doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-
-                                               [self.trace addObject:selectedValue];
+                                               [_customError addFrame:selectedIndex];
                                                [self.tView reloadData];
                                            }
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -224,42 +215,16 @@
     }
     else if([command isEqualToString:@"CLEAR"])
     {
-        [self.trace removeAllObjects];
+        [_customError clear];
         [self.tView reloadData];
     }
-    else if([command isEqualToString:@"EXCEPTION"] || [command isEqualToString:@"CRASH"])
+    else if([command isEqualToString:@"EXCEPTION"])
     {
-
-        self.traceCrash = command;
-
-        if([self.trace count] == 0)
-        {
-            [self crashAppropriately];
-        }
-        else
-        {
-            //No need to worry about an else..
-            NSString *next = [self.trace firstObject];
-            [self.trace removeObjectAtIndex:0];
-            
-            if([next isEqualToString:@"Function A"])
-            {
-                [self funcA];
-            }
-            if([next isEqualToString:@"Function B"])
-            {
-                [self funcB];
-            }
-            if([next isEqualToString:@"Function C"])
-            {
-                [self funcC];
-            }
-            if([next isEqualToString:@"Function D"])
-            {
-                [self funcD];
-            }
-        }
-
+        [_customError raiseException];
+    }
+    else if ([command isEqualToString:@"CRASH"])
+    {
+        [_customError crash];
     }
     else if([command isEqualToString:@"Uncaught Exception"])
     {
@@ -307,32 +272,6 @@
     }
 }
 
-- (void) crashAppropriately
-{
-    if([self.traceCrash isEqualToString:@"EXCEPTION"])
-    {
-        @try
-        {
-           [NSException raise:@"Raised Exception" format:@"This is a forced caught exception"];
-
-
-        }
-        @catch (NSException *exception)
-        {
-            NSLog(@"Logging exception: %@", [exception description]);
-            [Crittercism logHandledException:exception];
-        }
-
-
-    }
-    else
-    {
-        NSLog(@"TRACER CRASH is %@", self.traceCrash);
-        [NSException raise:@"Raised Exception" format:@"This is a forced uncaught exception"];
-    }
-}
-
-
 - (void) recurse
 {
     NSLog(@"Recursing infintely.. ");
@@ -341,19 +280,17 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == kCustomStackSection && indexPath.row == [self.trace count] + 1)
+    if(indexPath.section == kCustomStackSection && indexPath.row == [_customError numberOfFrames] + 1)
     {
         return 83;
     }
     return 44;
 }
 
-
-
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if(indexPath.section == kCrashSection || indexPath.section == kExceptionSection || (indexPath.section == 2 && indexPath.row == [self.trace count]))
+    if(indexPath.section == kCrashSection || indexPath.section == kExceptionSection || (indexPath.section == 2 && indexPath.row == [_customError numberOfFrames]))
     {
         [self performCommand:[self.tView cellForRowAtIndexPath:indexPath].textLabel.text];
     }
@@ -368,7 +305,6 @@
         [self.tView deselectRowAtIndexPath:selection animated:animated];
     }
 }
-
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -390,145 +326,6 @@
         return @"      ...app doomed... patience grasshopper...  ";
     }
     return nil;
-}
-
-
-
-- (void) funcA
-{
-    NSLog(@"Function A called..");
-
-    if([self.trace count] == 0)
-    {
-        [self crashAppropriately];
-    }
-
-    //No need to worry about an else..
-    NSString *next = [self.trace firstObject];
-    [self.trace removeObjectAtIndex:0];
-
-    if([next isEqualToString:@"Function A"])
-    {
-        [self funcA];
-    }
-    if([next isEqualToString:@"Function B"])
-    {
-        [self funcB];
-    }
-    if([next isEqualToString:@"Function C"])
-    {
-        [self funcC];
-    }
-    if([next isEqualToString:@"Function D"])
-    {
-        [self funcD];
-    }
-
-}
-
-
-- (void) funcB
-{
-
-    NSLog(@"Function B called..");
-
-
-    if([self.trace count] == 0)
-    {
-        [self crashAppropriately];
-
-    }
-
-    //No need to worry about an else..
-    NSString *next = [self.trace firstObject];
-    [self.trace removeObjectAtIndex:0];
-
-    if([next isEqualToString:@"Function A"])
-    {
-        [self funcA];
-    }
-    if([next isEqualToString:@"Function B"])
-    {
-        [self funcB];
-    }
-    if([next isEqualToString:@"Function C"])
-    {
-        [self funcC];
-    }
-    if([next isEqualToString:@"Function D"])
-    {
-        [self funcD];
-    }
-
-}
-
-
-- (void) funcC
-{
-    NSLog(@"Function C called..");
-
-
-    if([self.trace count] == 0)
-    {
-        [self crashAppropriately];
-
-    }
-
-    //No need to worry about an else..
-    NSString *next = [self.trace firstObject];
-    [self.trace removeObjectAtIndex:0];
-
-    if([next isEqualToString:@"Function A"])
-    {
-        [self funcA];
-    }
-    if([next isEqualToString:@"Function B"])
-    {
-        [self funcB];
-    }
-    if([next isEqualToString:@"Function C"])
-    {
-        [self funcC];
-    }
-    if([next isEqualToString:@"Function D"])
-    {
-        [self funcD];
-    }
-
-}
-
-- (void) funcD
-{
-
-    NSLog(@"Function D called..");
-
-    if([self.trace count] == 0)
-    {
-        [self crashAppropriately];
-
-    }
-
-    //No need to worry about an else..
-    NSString *next = [self.trace firstObject];
-    [self.trace removeObjectAtIndex:0];
-
-    if([next isEqualToString:@"Function A"])
-    {
-        [self funcA];
-    }
-    if([next isEqualToString:@"Function B"])
-    {
-        [self funcB];
-    }
-    if([next isEqualToString:@"Function C"])
-    {
-        [self funcC];
-    }
-    if([next isEqualToString:@"Function D"])
-    {
-        [self funcD];
-    }
-    
 }
 
 
