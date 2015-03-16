@@ -38,6 +38,8 @@
 		20DAA0CC1A157E8500CC9216 /* CRTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CB1A157E8500CC9216 /* CRTransactionsViewController.m */; };
 		20DAA0CF1A157E9500CC9216 /* CROtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */; };
 		9F5EACB31AB48DF3001CA533 /* CRCustomError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB21AB48DF3001CA533 /* CRCustomError.m */; };
+		9F5EACB61AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB51AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m */; };
+		9F5EACB91AB727D8001CA533 /* CRFourButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB81AB727D8001CA533 /* CRFourButtonTableViewCell.m */; };
 		9F8D051C1A64BA2200273A7E /* UITabBarController+BarVisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8D051B1A64BA2200273A7E /* UITabBarController+BarVisibility.m */; };
 		9F90901D1AA0DE6B008A9846 /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9F90901B1AA0DE6B008A9846 /* dsym_upload.sh */; };
 		9F90901E1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F90901C1AA0DE6B008A9846 /* libCrittercism_v5_1_3.a */; };
@@ -105,6 +107,10 @@
 		20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CROtherViewController.m; sourceTree = "<group>"; };
 		9F5EACB11AB48DF3001CA533 /* CRCustomError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCustomError.h; sourceTree = "<group>"; };
 		9F5EACB21AB48DF3001CA533 /* CRCustomError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCustomError.m; sourceTree = "<group>"; };
+		9F5EACB41AB4A5BA001CA533 /* CRSingleButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSingleButtonTableViewCell.h; sourceTree = "<group>"; };
+		9F5EACB51AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSingleButtonTableViewCell.m; sourceTree = "<group>"; };
+		9F5EACB71AB727D8001CA533 /* CRFourButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFourButtonTableViewCell.h; sourceTree = "<group>"; };
+		9F5EACB81AB727D8001CA533 /* CRFourButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFourButtonTableViewCell.m; sourceTree = "<group>"; };
 		9F8D051A1A64BA2200273A7E /* UITabBarController+BarVisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+BarVisibility.h"; sourceTree = "<group>"; };
 		9F8D051B1A64BA2200273A7E /* UITabBarController+BarVisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+BarVisibility.m"; sourceTree = "<group>"; };
 		9F9090171AA0DE6B008A9846 /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
@@ -151,11 +157,15 @@
 		2080ADD01A3F806800A0E815 /* Reusable Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9F5EACB41AB4A5BA001CA533 /* CRSingleButtonTableViewCell.h */,
+				9F5EACB51AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m */,
+				9FD4D7291A6430380043667D /* CRTextViewTableViewCell.h */,
+				9FD4D72A1A6430380043667D /* CRTextViewTableViewCell.m */,
 				2080ADC61A3F7E9D00A0E815 /* ThreeButtonTableViewCell.h */,
 				2080ADC71A3F7E9D00A0E815 /* ThreeButtonTableViewCell.m */,
 				2080ADC81A3F7E9D00A0E815 /* ThreeButtonTableViewCell.xib */,
-				9FD4D7291A6430380043667D /* CRTextViewTableViewCell.h */,
-				9FD4D72A1A6430380043667D /* CRTextViewTableViewCell.m */,
+				9F5EACB71AB727D8001CA533 /* CRFourButtonTableViewCell.h */,
+				9F5EACB81AB727D8001CA533 /* CRFourButtonTableViewCell.m */,
 			);
 			name = "Reusable Cells";
 			sourceTree = "<group>";
@@ -408,6 +418,7 @@
 			files = (
 				2080ADE31A3F946800A0E815 /* AbstractActionSheetPicker.m in Sources */,
 				20DAA0C61A157E6300CC9216 /* CRErrorViewController.m in Sources */,
+				9F5EACB61AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m in Sources */,
 				2080ADE71A3F946800A0E815 /* ActionSheetLocalePicker.m in Sources */,
 				20DAA0A11A157DFC00CC9216 /* AppDelegate.m in Sources */,
 				2080ADE81A3F946800A0E815 /* ActionSheetStringPicker.m in Sources */,
@@ -416,6 +427,7 @@
 				9F8D051C1A64BA2200273A7E /* UITabBarController+BarVisibility.m in Sources */,
 				9FD4D7371A64A3340043667D /* CRUIWebViewController.m in Sources */,
 				2080ADE51A3F946800A0E815 /* ActionSheetDatePicker.m in Sources */,
+				9F5EACB91AB727D8001CA533 /* CRFourButtonTableViewCell.m in Sources */,
 				9FD4D7341A644AC70043667D /* CRNSURLSessionDataTaskWithDelegate.m in Sources */,
 				9F5EACB31AB48DF3001CA533 /* CRCustomError.m in Sources */,
 				20DAA0CF1A157E9500CC9216 /* CROtherViewController.m in Sources */,
