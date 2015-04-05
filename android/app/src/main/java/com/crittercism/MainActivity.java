@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     private ActionBar actionBar;
     private TabPagerAdapter tabPagerAdapter;
 
-    private String[] tabs = { "Error", "Network", "Transactions", "Other" };
+    private String[] tabs = { "Error", "Network", "Txns", "Other" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
