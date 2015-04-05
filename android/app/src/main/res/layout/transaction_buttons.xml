@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#efeff4"
-        android:layout_gravity="start"
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp"
         android:focusable="false"

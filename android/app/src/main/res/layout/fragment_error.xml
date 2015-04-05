@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#efeff4"
-        android:layout_gravity="start"
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp"
         android:focusable="false"
@@ -21,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nullPointerException"
         android:id="@+id/nullPointerCrashButton"
-        android:gravity="center_vertical|start"
+        android:gravity="center_vertical"
         style="?android:attr/borderlessButtonStyle"/>
 
     <Button
@@ -30,14 +29,13 @@
         android:layout_height="wrap_content"
         android:text="@string/indexOutOfBoundsException"
         android:id="@+id/indexOutOfBoundsCrashButton"
-        android:gravity="center_vertical|start"
+        android:gravity="center_vertical"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#efeff4"
-        android:layout_gravity="start"
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp"
         android:focusable="false"
@@ -50,7 +48,7 @@
         android:layout_height="wrap_content"
         android:text="@string/jsonException"
         android:id="@+id/jsonExceptionButton"
-        android:gravity="center_vertical|start" />
+        android:gravity="center_vertical" />
 
     <Button
         style="?android:attr/borderlessButtonStyle"
@@ -58,14 +56,13 @@
         android:layout_height="wrap_content"
         android:text="@string/illegalArgumentException"
         android:id="@+id/illegalArgumentExceptionButton"
-        android:gravity="center_vertical|start"
+        android:gravity="center_vertical"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#efeff4"
-        android:layout_gravity="start"
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp"
         android:focusable="false"
