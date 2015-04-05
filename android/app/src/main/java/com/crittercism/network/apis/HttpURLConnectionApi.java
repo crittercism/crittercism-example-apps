@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.util.Locale;
 
 /**
  * Created by dshirley on 3/30/15.
@@ -23,7 +24,7 @@ public class HttpURLConnectionApi implements NetworkApi {
         HttpURLConnection conn = (HttpURLConnection) request.getUrl().openConnection();
         conn.setRequestMethod(request.getMethod());
 
-        if (conn.getRequestMethod().toUpperCase().equals("POST")) {
+        if (conn.getRequestMethod().toUpperCase(Locale.getDefault()).equals("POST")) {
             conn.getOutputStream().write(request.getPostData().getBytes());
         }
 

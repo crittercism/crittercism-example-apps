@@ -1,46 +1,9 @@
 <resources>
     <string name="app_name">Crittercism</string>
-    <string name="copyright">Copyright © 2014 Crittercism Inc. All rights reserved.</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu_error">Error</string>
-    <string name="menu_network">Network</string>
-    <string name="menu_transactions">Transactions</string>
-    <string name="menu_other">Other</string>
-    <string name="menu_console">Console</string>
-
-    <string name="title_error">Errors</string>
-    <string name="title_network">Network</string>
-    <string name="title_transactions">Transactions</string>
-    <string name="title_other">Everything Else</string>
-    <string name="title_console">Console</string>
-    <string name="title_activity_mail">MailActivity</string>
-
-    <string name="subject">Subject:</string>
-    <string name="copies">Cc/Bcc:</string>
-    <string name="new_message">New Message</string>
-    <string name="send">Send</string>
-    <string name="cancel">Cancel</string>
-    <string name="to">To:</string>
-
     <string name="clear">CLEAR</string>
-    <string name="exception">EXCEPTION</string>
-    <string name="crash">CRASH</string>
-    <string name="title_activity_function_dialog">FunctionDialog</string>
-
-    <string name="title_activity_web_view">WebViewActivity</string>
-    <string name="network"><![CDATA[< Network]]></string>
-    <string name="back_button"><![CDATA[<]]></string>
-    <string name="forward_button"><![CDATA[>]]></string>
-    <string name="trans_browse_title">TRANSACTION \'Browse\':</string>
-    <string name="trans_reserve_title">TRANSACTION \'Reserve\':</string>
-    <string name="trans_confirm_title">TRANSACTION \'Confirm\':</string>
-    <string name="trans_login_title">TRANSACTION \'Login\':</string>
     <string name="other_username">SET USERNAME:</string>
     <string name="other_metadata">SET METADATA (GAME LEVEL):</string>
     <string name="other_breadcrumbs">LEAVE BREADCRUMB:</string>
-    <string name="image">image</string>
-    <string name="function_dialog_title">Pick a function</string>
     <string name="add">Add</string>
     <string name="begin">begin</string>
     <string name="end">end</string>
@@ -57,4 +20,32 @@
     <string name="userNameBob">Bob</string>
     <string name="userNameSue">Sue</string>
     <string name="userNameJoe">Joe</string>
+    <string name="nullPointerException">NULL POINTER EXCEPTION</string>
+    <string name="indexOutOfBoundsException">INDEX OUT OF BOUNDS EXCEPTION</string>
+    <string name="jsonException">JSON EXCEPTION</string>
+    <string name="illegalArgumentException">Illegal Argument Exception</string>
+    <string name="customizeStackTrace">CUSTOMIZE THE STACK TRACE:</string>
+    <string name="handledExceptions">HANDLE EXCEPTION:</string>
+    <string name="forceCrash">FORCE CRASH:</string>
+    <string name="chooseConnectionType">CHOOSE CONNECTION TYPE:</string>
+    <string name="okHttp">OkHttp</string>
+    <string name="apacheHttpClient">Apache HttpClient</string>
+    <string name="httpUrlConnection">HttpURLConnection</string>
+    <string name="chooseProtocol">CHOOSE PROTOCOL:</string>
+    <string name="http">HTTP</string>
+    <string name="https">HTTPS</string>
+    <string name="punchIt">PUNCH IT:</string>
+    <string name="get1Byte">GET 1b</string>
+    <string name="get1Kb">GET 1kb</string>
+    <string name="get1Mb">GET 1mb</string>
+    <string name="post1Byte">POST 1b</string>
+    <string name="post1Kb">POST 1KB</string>
+    <string name="post1Mb">POST 1MB</string>
+    <string name="latency1sec">Latency 1s</string>
+    <string name="latency3s">Latency 3s</string>
+    <string name="latency5s">Latency 5s</string>
+    <string name="status200">200 Status</string>
+    <string name="status404">404 Status</string>
+    <string name="status500">500 STATUS</string>
+    <string name="responses">RESPONSES:</string>
 </resources>

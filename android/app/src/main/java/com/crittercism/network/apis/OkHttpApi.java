@@ -11,6 +11,7 @@ import org.apache.http.HttpStatus;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
 /**
  * Created by dshirley on 3/30/15.
@@ -36,7 +37,7 @@ public class OkHttpApi implements NetworkApi {
         Request.Builder builder = new Request.Builder();
         builder.url(request.getUrl());
 
-        if (request.getMethod().toUpperCase().equals("POST")) {
+        if (request.getMethod().toUpperCase(Locale.getDefault()).equals("POST")) {
             RequestBody body = RequestBody.create(PLAIN_TEXT, request.getPostData());
             builder.post(body);
         }
