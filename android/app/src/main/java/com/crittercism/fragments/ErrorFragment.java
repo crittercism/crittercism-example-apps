@@ -3,6 +3,7 @@ package com.crittercism.fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -32,7 +33,7 @@ public class ErrorFragment extends Fragment {
     private enum ErrorType {
         CRASH,
         EXCEPTION
-    };
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -88,9 +89,7 @@ public class ErrorFragment extends Fragment {
                     } else {
                         throw new AssertionError("Unregognized error type: " + type.ordinal());
                     }
-                } catch (java.lang.InstantiationException e) {
-                    throw new AssertionError(e);
-                } catch (IllegalAccessException e) {
+                } catch (java.lang.InstantiationException | IllegalAccessException e) {
                     throw new AssertionError(e);
                 }
             }
@@ -129,7 +128,7 @@ public class ErrorFragment extends Fragment {
         }
     }
 
-    private static class FunctionDialog extends DialogFragment implements DialogInterface.OnClickListener {
+    public static class FunctionDialog extends DialogFragment implements DialogInterface.OnClickListener {
         String[] function_items = { "Function A", "Function B", "Function C", "Function D" };
 
 
@@ -141,6 +140,7 @@ public class ErrorFragment extends Fragment {
             return frag;
         }
 
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
