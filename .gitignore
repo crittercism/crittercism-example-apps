@@ -4,3 +4,5 @@ xcuserdata
 *.xccheckout
 !xcshareddata
 *.sw[l-p]
+android/app/src/main/libs/
+android/app/src/main/obj/

@@ -66,6 +66,40 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp"
         android:focusable="false"
+        android:text="@string/nativeCrash"
+        android:id="@+id/nativeCrashLabel"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recursiveNativeCrash"
+        android:id="@+id/recursiveNativeCrashButton"
+        android:gravity="center_vertical"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/strdupNativeCrash"
+        android:id="@+id/strdupNativeCrashButton"
+        android:gravity="center_vertical"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cppNativeCrash"
+        android:id="@+id/cppNativeCrashButton"
+        android:gravity="center_vertical"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#efeff4"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp"
+        android:focusable="false"
         android:text="@string/customizeStackTrace"
         android:id="@+id/customizeStackTraceTextView" />
 
