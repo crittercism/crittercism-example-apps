@@ -5,3 +5,5 @@
 .DS_Store
 /build
 *.iml
+app/src/main/libs/
+app/src/main/obj/

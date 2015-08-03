@@ -24,6 +24,10 @@
     <string name="indexOutOfBoundsException">INDEX OUT OF BOUNDS EXCEPTION</string>
     <string name="jsonException">JSON EXCEPTION</string>
     <string name="illegalArgumentException">Illegal Argument Exception</string>
+    <string name="nativeCrash">Native Crash:</string>
+    <string name="recursiveNativeCrash">Recursive Native Crash</string>
+    <string name="strdupNativeCrash">Strdup Native Crash</string>
+    <string name="cppNativeCrash">CPP Native Crash</string>
     <string name="customizeStackTrace">CUSTOMIZE THE STACK TRACE:</string>
     <string name="handledExceptions">HANDLE EXCEPTION:</string>
     <string name="forceCrash">FORCE CRASH:</string>
