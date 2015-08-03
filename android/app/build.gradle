@@ -13,21 +13,15 @@ android {
     }
 
     buildTypes {
-        ndkDebug {
-            debuggable true
-            //minifyEnabled false
-            signingConfig signingConfigs.debug
-        }
-
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
 
-        ndkRelease {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    productFlavors {
+        sdkonly {}
+        ndk {}
     }
 
     lintOptions {
@@ -38,25 +32,27 @@ android {
         jniLibs.srcDir 'src/main/libs'
         jni.srcDirs = [] //disable automatic ndk-build call
     }
-
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
 
-    debugCompile 'com.crittercism:crittercism-android-agent:5.0.6'
-    releaseCompile 'com.crittercism:crittercism-android-agent:5.0.6'
-    ndkDebugCompile 'com.crittercism:crittercism-android-ndk-agent:5.0.6'
-    ndkReleaseCompile 'com.crittercism:crittercism-android-ndk-agent:5.0.6'
+    sdkonlyCompile 'com.crittercism:crittercism-android-agent:5.0.6'
+    ndkCompile 'com.crittercism:crittercism-android-ndk-agent:5.0.6'
 
     compile 'com.squareup.okhttp:okhttp:2.2.0'
 }
 
 task ndkBuild(type: Exec) {
-    commandLine "${android.plugin.getNdkFolder().getAbsolutePath()}/ndk-build", '-C', file('src/main').absolutePath
+    if (android.plugin.getNdkFolder() == null) {
+        throw new GradleException("please set ndk.dir in your local.properties file")
+    } else {
+        commandLine "${android.plugin.getNdkFolder().getAbsolutePath()}/ndk-build", '-C', file('src/main').absolutePath
+    }
 }
 
-tasks.withType(JavaCompile) {
-    compileTask -> compileTask.dependsOn ndkBuild
+gradle.projectsEvaluated {
+    compileNdkDebugJava.dependsOn ndkBuild
+    compileNdkReleaseJava.dependsOn ndkBuild
 }
