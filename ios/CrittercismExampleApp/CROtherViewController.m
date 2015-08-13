@@ -7,7 +7,7 @@
 //
 
 #import "CROtherViewController.h"
-#import "Crittercism.h"
+#import <Crittercism/Crittercism.h>
 #import "GlobalLog.h"
 
 #define kUsernameSection 0

@@ -7,7 +7,7 @@
 //
 
 #import "CRCustomError.h"
-#import "Crittercism.h"
+#import <Crittercism/Crittercism.h>
 
 // Calling perform selector on a selector that is determined at runtime produces
 // a compile warning.  This macro works around that.

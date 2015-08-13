@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Crittercism.h"
+#import <Crittercism/Crittercism.h>
 #import "GlobalLog.h"
 @interface AppDelegate ()
 

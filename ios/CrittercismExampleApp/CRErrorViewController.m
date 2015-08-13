@@ -9,7 +9,7 @@
 #import "CRErrorViewController.h"
 #import "ThreeButtonTableViewCell.h"
 #import "ActionSheetStringPicker.h"
-#import "Crittercism.h"
+#import <Crittercism/Crittercism.h>
 #import "GlobalLog.h"
 #import "CRCustomError.h"
 #import "CRSingleButtonTableViewCell.h"

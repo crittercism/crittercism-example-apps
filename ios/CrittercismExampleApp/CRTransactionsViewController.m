@@ -7,7 +7,7 @@
 //
 
 #import "CRTransactionsViewController.h"
-#import "Crittercism.h"
+#import <Crittercism/Crittercism.h>
 #import "GlobalLog.h"
 
 @interface CRTransactionsViewController ()

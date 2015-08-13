@@ -37,8 +37,7 @@
 		20DAA0C91A157E7500CC9216 /* CRNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0C81A157E7500CC9216 /* CRNetworkViewController.m */; };
 		20DAA0CC1A157E8500CC9216 /* CRTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CB1A157E8500CC9216 /* CRTransactionsViewController.m */; };
 		20DAA0CF1A157E9500CC9216 /* CROtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */; };
-		9F55C7131B5093E6006B4190 /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9F55C7111B5093E6006B4190 /* dsym_upload.sh */; };
-		9F55C7141B5093E6006B4190 /* libCrittercism_v5_2_4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F55C7121B5093E6006B4190 /* libCrittercism_v5_2_4.a */; };
+		9F352CA11B7C26C900FD46EC /* Crittercism.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F352CA01B7C26C900FD46EC /* Crittercism.framework */; };
 		9F5EACB31AB48DF3001CA533 /* CRCustomError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB21AB48DF3001CA533 /* CRCustomError.m */; };
 		9F5EACB61AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB51AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m */; };
 		9F5EACB91AB727D8001CA533 /* CRFourButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB81AB727D8001CA533 /* CRFourButtonTableViewCell.m */; };
@@ -105,12 +104,7 @@
 		20DAA0CB1A157E8500CC9216 /* CRTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTransactionsViewController.m; sourceTree = "<group>"; };
 		20DAA0CD1A157E9500CC9216 /* CROtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CROtherViewController.h; sourceTree = "<group>"; };
 		20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CROtherViewController.m; sourceTree = "<group>"; };
-		9F55C70D1B5093E6006B4190 /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
-		9F55C70E1B5093E6006B4190 /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
-		9F55C70F1B5093E6006B4190 /* CrittercismConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismConfig.h; sourceTree = "<group>"; };
-		9F55C7101B5093E6006B4190 /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
-		9F55C7111B5093E6006B4190 /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
-		9F55C7121B5093E6006B4190 /* libCrittercism_v5_2_4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v5_2_4.a; sourceTree = "<group>"; };
+		9F352CA01B7C26C900FD46EC /* Crittercism.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crittercism.framework; path = CrittercismExampleApp/Crittercism.framework; sourceTree = "<group>"; };
 		9F5EACB11AB48DF3001CA533 /* CRCustomError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCustomError.h; sourceTree = "<group>"; };
 		9F5EACB21AB48DF3001CA533 /* CRCustomError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCustomError.m; sourceTree = "<group>"; };
 		9F5EACB41AB4A5BA001CA533 /* CRSingleButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSingleButtonTableViewCell.h; sourceTree = "<group>"; };
@@ -146,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F55C7141B5093E6006B4190 /* libCrittercism_v5_2_4.a in Frameworks */,
+				9F352CA11B7C26C900FD46EC /* Crittercism.framework in Frameworks */,
 				2080AE101A42424C00A0E815 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				2080AE0F1A42424C00A0E815 /* SystemConfiguration.framework */,
+				9F352CA01B7C26C900FD46EC /* Crittercism.framework */,
 				20DAA09A1A157DFC00CC9216 /* CrittercismExampleApp */,
 				20DAA0991A157DFC00CC9216 /* Products */,
 			);
@@ -241,7 +236,6 @@
 		20DAA09A1A157DFC00CC9216 /* CrittercismExampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				9F55C70C1B5093E6006B4190 /* CrittercismSDK */,
 				9FF0000D1A61B5D7001A2654 /* Network APIs */,
 				2080ADEC1A3F96C400A0E815 /* Assets */,
 				2080ADD11A3F944A00A0E815 /* UtilsYo */,
@@ -279,19 +273,6 @@
 				20DAA09D1A157DFC00CC9216 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9F55C70C1B5093E6006B4190 /* CrittercismSDK */ = {
-			isa = PBXGroup;
-			children = (
-				9F55C70D1B5093E6006B4190 /* CRFilter.h */,
-				9F55C70E1B5093E6006B4190 /* Crittercism.h */,
-				9F55C70F1B5093E6006B4190 /* CrittercismConfig.h */,
-				9F55C7101B5093E6006B4190 /* CrittercismDelegate.h */,
-				9F55C7111B5093E6006B4190 /* dsym_upload.sh */,
-				9F55C7121B5093E6006B4190 /* libCrittercism_v5_2_4.a */,
-			);
-			path = CrittercismSDK;
 			sourceTree = "<group>";
 		};
 		9FF0000D1A61B5D7001A2654 /* Network APIs */ = {
@@ -388,7 +369,6 @@
 				20DAA0AF1A157DFC00CC9216 /* LaunchScreen.xib in Resources */,
 				20DAA0AC1A157DFC00CC9216 /* Images.xcassets in Resources */,
 				2080ADF61A3F9BB700A0E815 /* 110-bug@2x.png in Resources */,
-				9F55C7131B5093E6006B4190 /* dsym_upload.sh in Resources */,
 				2080ADF21A3F9B2600A0E815 /* 22-skull-n-bones@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,7 +387,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "REQUIRE_UPLOAD_SUCCESS=0\nAPP_ID=\"549208d73cf56b9e0457caee\"\nAPI_KEY=\"dyEw0hMHOmIIkqAULKLzCU3FAQpQNRkg\"\nsource \"${SRCROOT}\"/CrittercismExampleApp/CrittercismSDK/dsym_upload.sh\n";
+			shellScript = "# Uncomment the lines below and fill in your APP_ID and API_KEY\n\n#REQUIRE_UPLOAD_SUCCESS=0\n#APP_ID=\"YOUR APP ID GOES HERE\"\n#API_KEY=\"YOUR API KEY GOES HERE\"\n#source \"${SRCROOT}\"/CrittercismExampleApp/Crittercism.framework/dsym_upload.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -554,6 +534,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrittercismExampleApp",
+				);
 				INFOPLIST_FILE = CrittercismExampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -572,6 +556,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrittercismExampleApp",
+				);
 				INFOPLIST_FILE = CrittercismExampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
