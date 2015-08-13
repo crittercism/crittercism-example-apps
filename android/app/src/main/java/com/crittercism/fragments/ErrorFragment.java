@@ -16,11 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.crittercism.R;
+import com.crittercism.errors.CppNativeCustomError;
 import com.crittercism.errors.CustomError;
 import com.crittercism.errors.IllegalArgumentCustomError;
 import com.crittercism.errors.IndexOutOfBoundsCustomError;
 import com.crittercism.errors.JsonCustomError;
 import com.crittercism.errors.NullPointerCustomError;
+import com.crittercism.errors.RecursiveNativeCustomError;
+import com.crittercism.errors.StrdupNativeCustomError;
 
 
 public class ErrorFragment extends Fragment {
@@ -62,6 +65,9 @@ public class ErrorFragment extends Fragment {
         setErrorAction(R.id.indexOutOfBoundsCrashButton, IndexOutOfBoundsCustomError.class, ErrorType.CRASH);
         setErrorAction(R.id.jsonExceptionButton, JsonCustomError.class, ErrorType.EXCEPTION);
         setErrorAction(R.id.illegalArgumentExceptionButton, IllegalArgumentCustomError.class, ErrorType.EXCEPTION);
+        setErrorAction(R.id.recursiveNativeCrashButton, RecursiveNativeCustomError.class, ErrorType.CRASH);
+        setErrorAction(R.id.strdupNativeCrashButton, StrdupNativeCustomError.class, ErrorType.CRASH);
+        setErrorAction(R.id.cppNativeCrashButton, CppNativeCustomError.class, ErrorType.CRASH);
 
         return v;
     }
@@ -89,7 +95,9 @@ public class ErrorFragment extends Fragment {
                     } else {
                         throw new AssertionError("Unregognized error type: " + type.ordinal());
                     }
-                } catch (java.lang.InstantiationException | IllegalAccessException e) {
+                } catch (java.lang.InstantiationException e) {
+                    throw new AssertionError(e);
+                } catch (IllegalAccessException e) {
                     throw new AssertionError(e);
                 }
             }
