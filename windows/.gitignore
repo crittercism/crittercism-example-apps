@@ -1,0 +1,13 @@
+*.suo
+*.csproj.user
+Thumbs.db
+build/tmp/
+build/*.nupkg
+obj
+Bin
+packages/*
+.DS_Store
+._*
+*~
+AppPackages
+BundleArtifacts
