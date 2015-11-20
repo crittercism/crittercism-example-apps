@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Crittercism.initialize(getApplicationContext(), "558ebe087bdd4942113b413f");
+        Crittercism.initialize(getApplicationContext(), "YOUR APPID GOES HERE");
         setContentView(R.layout.activity_work);
 
         this.viewPager = (ViewPager)findViewById(R.id.pager);

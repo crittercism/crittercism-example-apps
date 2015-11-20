@@ -29,8 +29,11 @@ android {
     }
 
     sourceSets.main {
-        jniLibs.srcDir 'src/main/libs'
         jni.srcDirs = [] //disable automatic ndk-build call
+    }
+
+    sourceSets.ndk {
+        jniLibs.srcDir 'src/main/libs'
     }
 }
 
@@ -45,14 +48,16 @@ dependencies {
 }
 
 task ndkBuild(type: Exec) {
-    if (android.plugin.getNdkFolder() == null) {
+    if (android.ndkDirectory == null) {
         throw new GradleException("please set ndk.dir in your local.properties file")
     } else {
-        commandLine "${android.plugin.getNdkFolder().getAbsolutePath()}/ndk-build", '-C', file('src/main').absolutePath
+        commandLine "${android.ndkDirectory.getAbsolutePath()}/ndk-build", '-C', file('src/main').absolutePath
     }
 }
 
+/*
 gradle.projectsEvaluated {
-    compileNdkDebugJava.dependsOn ndkBuild
-    compileNdkReleaseJava.dependsOn ndkBuild
+    compileNdkDebugJavaWithJavac.dependsOn ndkBuild
+    compileNdkReleaseJavaWithJavac.dependsOn ndkBuild
 }
+*/
