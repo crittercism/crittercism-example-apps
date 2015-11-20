@@ -55,9 +55,7 @@ task ndkBuild(type: Exec) {
     }
 }
 
-/*
 gradle.projectsEvaluated {
     compileNdkDebugJavaWithJavac.dependsOn ndkBuild
     compileNdkReleaseJavaWithJavac.dependsOn ndkBuild
 }
-*/
