@@ -37,7 +37,7 @@
 		20DAA0C91A157E7500CC9216 /* CRNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0C81A157E7500CC9216 /* CRNetworkViewController.m */; };
 		20DAA0CC1A157E8500CC9216 /* CRTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CB1A157E8500CC9216 /* CRTransactionsViewController.m */; };
 		20DAA0CF1A157E9500CC9216 /* CROtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */; };
-		9F352CA11B7C26C900FD46EC /* Crittercism.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F352CA01B7C26C900FD46EC /* Crittercism.framework */; };
+		9F108ACC1C238B2200B84868 /* Crittercism.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F108ACB1C238B2200B84868 /* Crittercism.framework */; };
 		9F5EACB31AB48DF3001CA533 /* CRCustomError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB21AB48DF3001CA533 /* CRCustomError.m */; };
 		9F5EACB61AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB51AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m */; };
 		9F5EACB91AB727D8001CA533 /* CRFourButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB81AB727D8001CA533 /* CRFourButtonTableViewCell.m */; };
@@ -104,7 +104,7 @@
 		20DAA0CB1A157E8500CC9216 /* CRTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTransactionsViewController.m; sourceTree = "<group>"; };
 		20DAA0CD1A157E9500CC9216 /* CROtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CROtherViewController.h; sourceTree = "<group>"; };
 		20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CROtherViewController.m; sourceTree = "<group>"; };
-		9F352CA01B7C26C900FD46EC /* Crittercism.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crittercism.framework; path = CrittercismExampleApp/Crittercism.framework; sourceTree = "<group>"; };
+		9F108ACB1C238B2200B84868 /* Crittercism.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crittercism.framework; sourceTree = "<group>"; };
 		9F5EACB11AB48DF3001CA533 /* CRCustomError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCustomError.h; sourceTree = "<group>"; };
 		9F5EACB21AB48DF3001CA533 /* CRCustomError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCustomError.m; sourceTree = "<group>"; };
 		9F5EACB41AB4A5BA001CA533 /* CRSingleButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSingleButtonTableViewCell.h; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F352CA11B7C26C900FD46EC /* Crittercism.framework in Frameworks */,
+				9F108ACC1C238B2200B84868 /* Crittercism.framework in Frameworks */,
 				2080AE101A42424C00A0E815 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,8 +218,8 @@
 		20DAA08F1A157DFC00CC9216 = {
 			isa = PBXGroup;
 			children = (
+				9F108ACB1C238B2200B84868 /* Crittercism.framework */,
 				2080AE0F1A42424C00A0E815 /* SystemConfiguration.framework */,
-				9F352CA01B7C26C900FD46EC /* Crittercism.framework */,
 				20DAA09A1A157DFC00CC9216 /* CrittercismExampleApp */,
 				20DAA0991A157DFC00CC9216 /* Products */,
 			);
@@ -537,6 +537,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CrittercismExampleApp",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CrittercismExampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -559,6 +560,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CrittercismExampleApp",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CrittercismExampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

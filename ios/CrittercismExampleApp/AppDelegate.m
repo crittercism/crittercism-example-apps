@@ -37,9 +37,7 @@
      *
      */
 
-#warning Be sure to read above instructions before running and remove this error line.
-
-    [Crittercism enableWithAppID:@"YOUR APP ID GOES HERE"];
+    [Crittercism enableWithAppID:@"56735417cb99e10e00c7eaae"];
     
     if([Crittercism didCrashOnLastLoad])
     {
