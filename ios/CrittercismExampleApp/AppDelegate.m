@@ -37,7 +37,7 @@
      *
      */
 
-    [Crittercism enableWithAppID:@"56735417cb99e10e00c7eaae"];
+    [Crittercism enableWithAppID:@"YOUR APP ID GOES HERE"];
     
     if([Crittercism didCrashOnLastLoad])
     {
