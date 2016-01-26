@@ -14,28 +14,60 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" HorizontalAlignment="Center" VerticalAlignment="Center"
+          Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="12,17,0,28">
             <TextBlock Text="CRITTERCISM" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Demo" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Demo" Margin="9,0,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Margin="14,151,10,10" Grid.RowSpan="2">
-            <Button Content="Leave Breadcrumb" HorizontalAlignment="Left" Margin="190,61,-1,0" VerticalAlignment="Top" Click="leaveBreadcrumbClick" Width="266"/>
-            <Button Content="Handled Exception" HorizontalAlignment="Left" Margin="190,211,-4,0" VerticalAlignment="Top" Click="handledExceptionClick" Width="266"/>
-            <Button Content="Crash" HorizontalAlignment="Left" Margin="190,286,-4,0" VerticalAlignment="Top" Click="crashClick" Width="266"/>
-            <Button Content="Back" HorizontalAlignment="Left" Margin="0,535,0,0" VerticalAlignment="Top" Height="72" Width="120" Click="backButtonClicked"/>
-            <Button Content="Next" HorizontalAlignment="Left" Margin="336,535,0,0" VerticalAlignment="Top" Height="72" Width="120" Click="nextButtonClicked" />
-            <Image Margin="10,41,270,236" Source="/stacktrace.png" Stretch="Fill"/>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="6"
+               Source="/stacktrace.png" Margin="9,0,0,0" Stretch="Fill"/>
+            <Button Grid.Row="0" Grid.Column="1"
+                Content="Set Username" HorizontalAlignment="Left" VerticalAlignment="Center" Click="setUsernameClick" Width="266"/>
+            <Button Grid.Row="1" Grid.Column="1"
+                Content="Leave Breadcrumb" HorizontalAlignment="Left" VerticalAlignment="Center" Click="leaveBreadcrumbClick" Width="266"/>
+            <Button Grid.Row="2" Grid.Column="1"
+                Content="Network Request" HorizontalAlignment="Left" VerticalAlignment="Center" Click="logNetworkRequestClick" Width="266"/>
+            <Button Grid.Row="3" Grid.Column="1"
+                Name="userflowButton"
+                Content="Begin Userflow" HorizontalAlignment="Left" VerticalAlignment="Center" Click="userflowClick" Width="266"/>
+            <Button Grid.Row="4" Grid.Column="1"
+                Content="Handled Exception" HorizontalAlignment="Left" VerticalAlignment="Center" Click="handledExceptionClick" Width="266"/>
+            <Button Grid.Row="5" Grid.Column="1"
+                Content="Crash" HorizontalAlignment="Left" VerticalAlignment="Center" Click="crashClick" Width="266"/>
         </Grid>
-        <TextBlock FontSize="16" HorizontalAlignment="Left" Margin="26,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="436" Grid.Row="1" Text="Pressing the Crash button above forces a crash in this app's code. Crittercism saves a detailed error report and sends an email to the application's owner, notifying him that a problem has occurred. The email includes a stack trace and the device on which the problem occurred."/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="9,9,0,0" 
+                   FontSize="16" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="436"
+                   Text="Pressing the Crash button above forces a crash in this app's code. Crittercism saves a detailed crash report and sends an email to the application's owner, indicating that a crash has occurred. The email includes a stack trace and the device on which the crash occurred."/>
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                Content="Next" HorizontalAlignment="Center" VerticalAlignment="Top" Height="72" Width="120" Click="nextButtonClicked"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

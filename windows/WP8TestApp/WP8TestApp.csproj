@@ -25,10 +25,6 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,20 +94,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Crashes.xaml.cs">
-      <DependentUpon>Crashes.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CrashSim.xaml.cs">
       <DependentUpon>CrashSim.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Customers.xaml.cs">
-      <DependentUpon>Customers.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Demo.cs" />
     <Compile Include="End.xaml.cs">
       <DependentUpon>End.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Loads.xaml.cs">
-      <DependentUpon>Loads.xaml</DependentUpon>
+    <Compile Include="EndUserflow.xaml.cs">
+      <DependentUpon>EndUserflow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -129,15 +120,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Crashes.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CrashSim.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Customers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,7 +128,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Loads.xaml">
+    <Page Include="EndUserflow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,7 +144,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -183,17 +165,12 @@
     <Content Include="att_124x124.png" />
     <Content Include="betfair_124x124.png" />
     <Content Include="crashes.png" />
-    <Content Include="eventbrite_124x124.png" />
     <Content Include="fancy-critter.png" />
     <Content Include="loads.png" />
-    <Content Include="netflix_124x124.png" />
     <Content Include="ninja-critter-times-square2.jpg" />
     <Content Include="ninja_critter.jpg" />
-    <Content Include="npr_124x124.png" />
-    <Content Include="Pinterest_Logo.png" />
-    <Content Include="pulse_124x124.png" />
-    <Content Include="Shazam.jpg" />
     <Content Include="stacktrace.png" />
+    <Content Include="userflow.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">

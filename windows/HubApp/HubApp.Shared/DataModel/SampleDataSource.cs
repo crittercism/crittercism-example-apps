@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Data.Json;
@@ -21,24 +22,38 @@ namespace HubApp.Data
     /// <summary>
     /// Generic item data model.
     /// </summary>
-    public class SampleDataItem
-    {
-        public SampleDataItem(String uniqueId, String title, String subtitle, String imagePath, String description, String content)
+    public class SampleDataItem : INotifyPropertyChanged {
+        public SampleDataItem(String uniqueId, String title, String imagePath, String description, String content)
         {
             this.UniqueId = uniqueId;
             this.Title = title;
-            this.Subtitle = subtitle;
             this.Description = description;
             this.ImagePath = imagePath;
             this.Content = content;
         }
 
         public string UniqueId { get; private set; }
-        public string Title { get; private set; }
-        public string Subtitle { get; private set; }
+        private string _Title;
+        public string Title {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                _Title = value;
+                RaisePropertyChanged("Title");
+            }
+        }
         public string Description { get; private set; }
         public string ImagePath { get; private set; }
         public string Content { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged(string propertyName) {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this,new PropertyChangedEventArgs(propertyName));
+        }
 
         public override string ToString()
         {
@@ -51,19 +66,17 @@ namespace HubApp.Data
     /// </summary>
     public class SampleDataGroup
     {
-        public SampleDataGroup(String uniqueId, String title, String subtitle, String imagePath, String description)
+        public SampleDataGroup(String uniqueId, String title, String imagePath, String description)
         {
             this.UniqueId = uniqueId;
             this.Title = title;
-            this.Subtitle = subtitle;
             this.Description = description;
             this.ImagePath = imagePath;
             this.Items = new ObservableCollection<SampleDataItem>();
         }
 
         public string UniqueId { get; private set; }
-        public string Title { get; private set; }
-        public string Subtitle { get; private set; }
+        public string Title { get; set; }
         public string Description { get; private set; }
         public string ImagePath { get; private set; }
         public ObservableCollection<SampleDataItem> Items { get; private set; }
@@ -80,8 +93,7 @@ namespace HubApp.Data
     /// SampleDataSource initializes with data read from a static json file included in the 
     /// project.  This provides sample data at both design-time and run-time.
     /// </summary>
-    public sealed class SampleDataSource
-    {
+    public sealed class SampleDataSource {
         private static SampleDataSource _sampleDataSource = new SampleDataSource();
 
         private ObservableCollection<SampleDataGroup> _groups = new ObservableCollection<SampleDataGroup>();
@@ -132,19 +144,18 @@ namespace HubApp.Data
                 JsonObject groupObject = groupValue.GetObject();
                 SampleDataGroup group = new SampleDataGroup(groupObject["UniqueId"].GetString(),
                                                             groupObject["Title"].GetString(),
-                                                            groupObject["Subtitle"].GetString(),
                                                             groupObject["ImagePath"].GetString(),
                                                             groupObject["Description"].GetString());
 
                 foreach (JsonValue itemValue in groupObject["Items"].GetArray())
                 {
                     JsonObject itemObject = itemValue.GetObject();
-                    group.Items.Add(new SampleDataItem(itemObject["UniqueId"].GetString(),
+                    SampleDataItem item = new SampleDataItem(itemObject["UniqueId"].GetString(),
                                                        itemObject["Title"].GetString(),
-                                                       itemObject["Subtitle"].GetString(),
                                                        itemObject["ImagePath"].GetString(),
                                                        itemObject["Description"].GetString(),
-                                                       itemObject["Content"].GetString()));
+                                                       itemObject["Content"].GetString());
+                    group.Items.Add(item);
                 }
                 this.Groups.Add(group);
             }

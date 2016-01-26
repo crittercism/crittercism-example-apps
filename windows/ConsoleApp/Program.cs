@@ -9,7 +9,9 @@ using CrittercismSDK;
 
 namespace ConsoleApp {
     class Program {
-        static void Main(string[] args) {
+        private static Random random = new Random();
+
+        public static void Main(string[] args) {
             Crittercism.Init("YOUR APP ID GOES HERE");
             try {
                 Console.WriteLine("ConsoleApp Demo");
@@ -30,9 +32,62 @@ namespace ConsoleApp {
             Crittercism.LeaveBreadcrumb(arg);
         }
 
+        private static string[] urls=new string[] {
+            "http://www.hearst.com",
+            "http://www.urbanoutfitters.com",
+            "http://www.pinterest.com",
+            "http://www.docusign.com",
+            "http://www.netflix.com",
+            "http://www.paypal.com",
+            "http://www.groupon.com",
+            "http://www.ebay.com",
+            "http://www.yahoo.com",
+            "http://www.linkedin.com",
+            "http://www.bloomberg.com",
+            "http://www.hoteltonight.com",
+            "http://www.npr.org",
+            "http://www.samsclub.com",
+            "http://www.postmates.com",
+            "http://www.teslamotors.com",
+            "http://www.bhphotovideo.com",
+            "http://www.getkeepsafe.com",
+            "http://www.boltcreative.com",
+            "http://www.crittercism.com/customers/"
+        };
+        private static void CommandLogNetworkRequest(string arg) {
+            Random random=new Random();
+            string[] methods=new string[] { "GET","POST","HEAD","PUT" };
+            string method=methods[random.Next(0,methods.Length)];
+            string url=urls[random.Next(0,urls.Length)];
+            if (!arg.Equals("")) {
+                url=url+"?arg="+WebUtility.UrlEncode(arg);
+            } else if (random.Next(0,2)==1) {
+                url=url+"?doYouLoveCrittercism=YES";
+            }
+            // latency in milliseconds
+            long latency=(long)Math.Floor(4000.0*random.NextDouble());
+            long bytesRead=random.Next(0,10000);
+            long bytesSent=random.Next(0,10000);
+            long responseCode=200;
+            if (random.Next(0,5)==0) {
+                // Some common response other than 200 == OK .
+                long[] responseCodes=new long[] { 301,308,400,401,402,403,404,405,408,500,502,503 };
+                responseCode=responseCodes[random.Next(0,responseCodes.Length)];
+            }
+            Console.WriteLine("LogNetworkRequest: \""+url+"\"");
+            Crittercism.LogNetworkRequest(
+                method,
+                url,
+                latency,
+                bytesRead,
+                bytesSent,
+                (HttpStatusCode)responseCode,
+                WebExceptionStatus.Success);
+        }
+
         private static void CommandLogHandledException(string arg) {
             if (arg.Length==0) {
-                arg="Deep Inner Exception";
+                arg="Deep Error";
             }
             Console.WriteLine("LogHandledException: \""+arg+"\"");
             try {
@@ -52,7 +107,7 @@ namespace ConsoleApp {
 
         private static void CommandCrash(string arg) {
             if (arg.Length==0) {
-                arg="Deep Inner Exception";
+                arg="Deep Error";
             }
             Console.WriteLine("Crash: \""+arg+"\"");
             ThrowException(arg);
@@ -88,6 +143,7 @@ namespace ConsoleApp {
             Console.WriteLine("  h == Help");
             Console.WriteLine("  u arg == SetUsername");
             Console.WriteLine("  b arg == LeaveBreadcrumb");
+            Console.WriteLine("  n arg == LogNetworkRequest");
             Console.WriteLine("  e arg == LogHandledException");
             Console.WriteLine("  c arg == Crash");
             Console.WriteLine("  v == Do you love Crittercism?");
@@ -107,6 +163,9 @@ namespace ConsoleApp {
                         break;
                     case 'b':
                         CommandBreadcrumb(arg);
+                        break;
+                    case 'n':
+                        CommandLogNetworkRequest(arg);
                         break;
                     case 'e':
                         CommandLogHandledException(arg);

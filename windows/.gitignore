@@ -1,9 +1,11 @@
+.vs/
 *.suo
 *.csproj.user
 Thumbs.db
 build/tmp/
 build/*.nupkg
 obj
+bin
 Bin
 packages/*
 .DS_Store

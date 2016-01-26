@@ -21,14 +21,28 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="12,17,0,28">
             <TextBlock Text="CRITTERCISM" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="more info" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="More Info" Margin="9,0,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-        <Image Margin="113,10,113,297" Grid.Row="1" Source="/fancy-critter.png" Stretch="Fill"/>
-        <TextBlock HorizontalAlignment="Left" Margin="42,369,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Crittercism is available today for Windows Phone 8 and Windows RT apps. Check out our booth for more information. " VerticalAlignment="Top" Height="86" Width="392"/>
-        <Button Content="Start over" HorizontalAlignment="Left" Margin="172,497,0,0" Grid.Row="1" VerticalAlignment="Top" Width="151" Click="Button_Click_1"/>
-
+        <Grid Grid.Row="1" Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Grid.Column="0"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Source="/fancy-critter.png"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="Crittercism Windows SDK supports Windows Universal, Store, Phone 8.1, Phone 8, WPF, Forms, and Console .NET apps."
+                       TextWrapping="Wrap" Height="86" Width="392"/>
+            <HyperlinkButton Grid.Row="2" Grid.Column="0" 
+                             HorizontalAlignment="Center" VerticalAlignment="Center"
+                             Content="Windows SDK Documentation"
+                             Click="Hyperlink_Click"/>
+        </Grid>
         <!--ContentPanel - place additional content here-->
     </Grid>
 
