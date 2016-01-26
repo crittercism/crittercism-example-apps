@@ -31,6 +31,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -41,16 +42,22 @@
         <Button Grid.Row="1" Grid.Column="0" Content="Leave Breadcrumb"
                 Style="{StaticResource CritterStyle}"
                 Click="leaveBreadcrumbClick"/>
-        <Button Grid.Row="3" Grid.Column="0"  Content="Handled Exception"
+        <Button Grid.Row="2" Grid.Column="0" Content="Log Network Request"
+                Style="{StaticResource CritterStyle}"
+                Click="logNetworkRequestClick"/>
+        <Button Grid.Row="3" Grid.Column="0" Name="userflowButton" Content="Begin Userflow"
+                Style="{StaticResource CritterStyle}"
+                Click="userflowClick"/>
+        <Button Grid.Row="4" Grid.Column="0"  Content="Handled Exception"
                 Style="{StaticResource CritterStyle}"
                 Click="handledExceptionClick"/>
-        <Button Grid.Row="4" Grid.Column="0" Content="Crash"
+        <Button Grid.Row="5" Grid.Column="0" Content="Crash"
                 Style="{StaticResource CritterStyle}"
                 Click="testCrashClick"/>
-        <Button Grid.Row="5" Grid.Column="0" Content="New Window"
+        <Button Grid.Row="6" Grid.Column="0" Content="New Window"
                 Style="{StaticResource CritterStyle}"
                 Click="testNewWindowClick"/>
-        <Button Grid.Row="5" Grid.Column="0"
+        <Button Grid.Row="6" Grid.Column="0"
                 HorizontalAlignment="Right" VerticalAlignment="Center"
                 Click="critterClick">
             <Button.Template>

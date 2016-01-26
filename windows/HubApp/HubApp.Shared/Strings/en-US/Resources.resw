@@ -159,50 +159,26 @@
   <data name="GroupDescription" xml:space="preserve">
     <value>Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante</value>
   </data>
-  <data name="Item1Subtitle" xml:space="preserve">
-    <value>Item Subtitle: 1</value>
-  </data>
   <data name="Item1Title" xml:space="preserve">
     <value>Item Title: 1</value>
-  </data>
-  <data name="Item2Subtitle" xml:space="preserve">
-    <value>Item Subtitle: 2</value>
   </data>
   <data name="Item2Title" xml:space="preserve">
     <value>Item Title: 2</value>
   </data>
-  <data name="Item3Subtitle" xml:space="preserve">
-    <value>Item Subtitle: 3</value>
-  </data>
   <data name="Item3Title" xml:space="preserve">
     <value>Item Title: 3</value>
-  </data>
-  <data name="Item4Subtitle" xml:space="preserve">
-    <value>Item Subtitle: 4</value>
   </data>
   <data name="Item4Title" xml:space="preserve">
     <value>Item Title: 4</value>
   </data>
-  <data name="Item5Subtitle" xml:space="preserve">
-    <value>Item Subtitle: 5</value>
-  </data>
   <data name="Item5Title" xml:space="preserve">
     <value>Item Title: 5</value>
-  </data>
-  <data name="Item6Subtitle" xml:space="preserve">
-    <value>Item Subtitle: 6</value>
   </data>
   <data name="Item6Title" xml:space="preserve">
     <value>Item Title: 6</value>
   </data>
-  <data name="Item7Subtitle" xml:space="preserve">
-    <value>Item Subtitle: 7</value>
-  </data>
   <data name="Item7Title" xml:space="preserve">
     <value>Item Title: 7</value>
-  </data>
-  <data name="Item8Subtitle" xml:space="preserve">
-    <value>Item Subtitle: 8</value>
   </data>
   <data name="Item8Title" xml:space="preserve">
     <value>Item Title: 8</value>
@@ -226,50 +202,20 @@
     <value>Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper.</value>
     <comment>"Section1DescriptionText" duplicated three times.</comment>
   </data>
-  <data name="Section1DescriptionText.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper.</value>
+  <data name="DemoHeader.Header" xml:space="preserve">
+    <value>Demo</value>
   </data>
-  <data name="Section1Header.Header" xml:space="preserve">
-    <value>Section 1</value>
-  </data>
-  <data name="Section1Subtitle.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam</value>
-  </data>
-  <data name="Section2Header.Header" xml:space="preserve">
-    <value>Section 2</value>
-  </data>
-  <data name="Section3Header.Header" xml:space="preserve">
-    <value>Section 3</value>
-  </data>
-  <data name="Section3Subtitle.Text" xml:space="preserve">
-    <value>Section subtitle</value>
-  </data>
-  <data name="Section4Header.Header" xml:space="preserve">
-    <value>Section 4</value>
-  </data>
-  <data name="Section2UnderTitle.Text" xml:space="preserve">
-    <value>Quisque in porta lorem dolor amet sed consectetuer ising elit, sed diam non my nibh uis mod wisi quip.</value>
+  <data name="DemoSubtitle.Text" xml:space="preserve">
+    <value>Crittercism Demo</value>
   </data>
   <data name="Header.Text" xml:space="preserve">
     <value>Crittercism Demo</value>
   </data>
   <data name="Hub.Header" xml:space="preserve">
-    <value>Crittercism Demo</value>
+    <value>Demo</value>
   </data>
   <data name="HubSection1" xml:space="preserve">
     <value>SECTION 1</value>
-  </data>
-  <data name="HubSection2" xml:space="preserve">
-    <value>SECTION 2</value>
-  </data>
-  <data name="HubSection3" xml:space="preserve">
-    <value>SECTION 3</value>
-  </data>
-  <data name="HubSection4" xml:space="preserve">
-    <value>SECTION 4</value>
-  </data>
-  <data name="HubSection5" xml:space="preserve">
-    <value>SECTION 5</value>
   </data>
   <data name="NavigationFailedExceptionMessage" xml:space="preserve">
     <value>Navigation failed.</value>

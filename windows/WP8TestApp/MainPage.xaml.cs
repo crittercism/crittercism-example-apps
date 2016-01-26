@@ -24,8 +24,8 @@ namespace WP8TestApp
         }
 
         private void nextButtonClicked(object sender, RoutedEventArgs e) {
-            Crittercism.LeaveBreadcrumb("Navigating from MainPage to Customers");
-            NavigationService.Navigate(new Uri("/Customers.xaml", UriKind.Relative));
+            Crittercism.LeaveBreadcrumb("Navigating from MainPage to Demo");
+            NavigationService.Navigate(new Uri("/CrashSim.xaml", UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

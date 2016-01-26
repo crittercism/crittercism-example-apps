@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="330e447a-c326-45e2-89bd-46f4a78d5986" Publisher="CN=Kelly" Version="1.0.0.14" />
+  <Identity Name="330e447a-c326-45e2-89bd-46f4a78d5986" Publisher="CN=Kelly" Version="1.2.3.0" />
   <Properties>
     <DisplayName>HubApp.Windows</DisplayName>
     <PublisherDisplayName>Kelly</PublisherDisplayName>
