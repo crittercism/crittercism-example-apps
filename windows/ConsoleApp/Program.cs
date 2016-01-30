@@ -32,52 +32,75 @@ namespace ConsoleApp {
             Crittercism.LeaveBreadcrumb(arg);
         }
 
-        private static string[] urls=new string[] {
-            "http://www.hearst.com",
-            "http://www.urbanoutfitters.com",
-            "http://www.pinterest.com",
-            "http://www.docusign.com",
-            "http://www.netflix.com",
-            "http://www.paypal.com",
-            "http://www.groupon.com",
-            "http://www.ebay.com",
-            "http://www.yahoo.com",
-            "http://www.linkedin.com",
-            "http://www.bloomberg.com",
-            "http://www.hoteltonight.com",
-            "http://www.npr.org",
-            "http://www.samsclub.com",
-            "http://www.postmates.com",
-            "http://www.teslamotors.com",
-            "http://www.bhphotovideo.com",
-            "http://www.getkeepsafe.com",
-            "http://www.boltcreative.com",
-            "http://www.crittercism.com/customers/"
+        private static string[] urls = new string[] {
+            "http://www.mrscritter.com",
+            "http://www.babycritter.com",
+            "http://www.faithfulcritter.com",
+            "http://www.nextdoorcritter.com",
+            "http://www.karokecritter.com",
+            "http://www.yogacritter.com",
+            "http://www.secretagentcritter.com",
+            "http://www.critterwebservice.com",
+            "http://www.crittersearchengine.com",
+            "http://www.critterdatingservice.com",
+            "http://www.crittergourmetfood.com",
+            "http://www.critterworldnews.com",
+            "http://www.crittermoviereviews.com",
+            "http://www.critterburrowdecor.com"
         };
+        private static string[] urlPaths = new string[] {
+            "",
+            "",
+            "/?ilove=critters",
+            "/nutlovers",
+            "/nutsandberries.htm",
+            "/summerfun",
+            "/starring=mrscritter",
+            "?doYouLoveCrittercism=YES"
+        };
+        private static string randomURLString() {
+            return urls[random.Next(0,urls.Length)] + urlPaths[random.Next(0,urlPaths.Length)];
+        }
         private static void CommandLogNetworkRequest(string arg) {
-            Random random=new Random();
-            string[] methods=new string[] { "GET","POST","HEAD","PUT" };
-            string method=methods[random.Next(0,methods.Length)];
-            string url=urls[random.Next(0,urls.Length)];
+            Random random = new Random();
+            string[] methods = new string[] { "GET","POST","HEAD","PUT" };
+            string method = methods[random.Next(0,methods.Length)];
+            string urlString = "";
             if (!arg.Equals("")) {
-                url=url+"?arg="+WebUtility.UrlEncode(arg);
-            } else if (random.Next(0,2)==1) {
-                url=url+"?doYouLoveCrittercism=YES";
-            }
+                urlString = urls[random.Next(0,urls.Length)] + "?arg=" + WebUtility.UrlEncode(arg);
+            } else if (random.Next(0,2) == 1) {
+                urlString = randomURLString();
+            };
             // latency in milliseconds
-            long latency=(long)Math.Floor(4000.0*random.NextDouble());
-            long bytesRead=random.Next(0,10000);
-            long bytesSent=random.Next(0,10000);
-            long responseCode=200;
-            if (random.Next(0,5)==0) {
+            long latency = (long)Math.Floor(4000.0 * random.NextDouble());
+            long bytesRead = random.Next(0,10000);
+            long bytesSent = random.Next(0,10000);
+            long responseCode = 200;
+            if (random.Next(0,5) == 0) {
                 // Some common response other than 200 == OK .
-                long[] responseCodes=new long[] { 301,308,400,401,402,403,404,405,408,500,502,503 };
-                responseCode=responseCodes[random.Next(0,responseCodes.Length)];
-            }
-            Console.WriteLine("LogNetworkRequest: \""+url+"\"");
+                long[] responseCodes = new long[] { 301,308,400,401,402,403,404,405,408,500,502,503 };
+                responseCode = responseCodes[random.Next(0,responseCodes.Length)];
+            };
+            WebExceptionStatus exceptionStatus = WebExceptionStatus.Success;
+            if (random.Next(0,5) == 0) {
+                // Simulate a network WebException was encountered.
+                WebExceptionStatus[] exceptionStatuses = new WebExceptionStatus[] {
+                    WebExceptionStatus.NameResolutionFailure,
+                    WebExceptionStatus.ConnectFailure,
+                    WebExceptionStatus.ReceiveFailure,
+                    WebExceptionStatus.SendFailure,
+                    WebExceptionStatus.ConnectionClosed,
+                    WebExceptionStatus.TrustFailure,
+                    WebExceptionStatus.KeepAliveFailure,
+                    WebExceptionStatus.Timeout
+                };
+                exceptionStatus = exceptionStatuses[random.Next(0,exceptionStatuses.Length)];
+                // We didn't receive a simulated response, after all.
+                responseCode = 0;
+            };
             Crittercism.LogNetworkRequest(
                 method,
-                url,
+                urlString,
                 latency,
                 bytesRead,
                 bytesSent,
