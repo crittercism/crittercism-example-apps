@@ -18,27 +18,37 @@
 #import "CROtherViewController.h"
 #import <Crittercism/Crittercism.h>
 #import "GlobalLog.h"
+#import "CRCrashOnNextAppLoad.h"
 
-#define kUsernameSection 0
-#define kMetaDataSection 1
-#define kBreadcrumbsSection 2
-#define kOutOutStatus 3
+typedef enum {
+    CROtherViewControllerSectionUsername = 0,
+    CROtherViewControllerSectionMetaData,
+    CROtherViewControllerSectionBreadcrumbs,
+    CROtherViewControllerSectionOptOutStatus,
+    CROtherViewControllerSectionCrashOnNextAppLoad,
+    CROtherViewControllerSectionTotal,
+} CROtherViewControllerSection;
 
 @interface CROtherViewController ()
-@property (nonatomic, strong) NSArray *usernames;
-@property (nonatomic, strong) NSArray *metadata;
-@property (nonatomic, strong) NSArray *breadcrumbs;
-@property (nonatomic, strong) NSArray *optOut;
+@property (nonatomic) NSArray *usernames;
+@property (nonatomic) NSArray *metadata;
+@property (nonatomic) NSArray *breadcrumbs;
+@property (nonatomic) NSArray *optOut;
+@property (nonatomic) NSArray *crashOnNextAppLoadButtons;
+@property (nonatomic) BOOL isPaymentSuccessful;
+@property (nonatomic) CRCrashOnNextAppLoad* crashOnNextAppLoad;
 @end
 
 @implementation CROtherViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _usernames = @[ @"Bob", @"Jim", @"Sue" ];
-    _metadata = @[ @"5", @"30", @"50" ];
-    _breadcrumbs = @[ @"hello world", @"abc", @"123" ];
-    _optOut = @[ @"Opt Out", @"Opt In" ];
+    _usernames = @[@"Bob", @"Jim", @"Sue"];
+    _metadata = @[@"5", @"30", @"50"];
+    _breadcrumbs = @[@"hello world", @"abc", @"123"];
+    _optOut = @[@"Opt Out", @"Opt In"];
+    _crashOnNextAppLoadButtons = @[@"Crash on next app load", @"Start normally"];
+    _crashOnNextAppLoad = [[CRCrashOnNextAppLoad alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,87 +59,125 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return CROtherViewControllerSectionTotal;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == kUsernameSection) {
-        return _usernames.count;
-    } else if (section == kMetaDataSection) {
-        return _metadata.count;
-    } else if (section == kBreadcrumbsSection) {
-        return _breadcrumbs.count;
-    } else if(section == kOutOutStatus) {
-        return _optOut.count;
+    switch (section) {
+        case CROtherViewControllerSectionUsername:
+            return _usernames.count;
+        case CROtherViewControllerSectionMetaData:
+            return _metadata.count;
+        case CROtherViewControllerSectionBreadcrumbs:
+            return _breadcrumbs.count;
+        case CROtherViewControllerSectionOptOutStatus:
+            return _optOut.count;
+        case CROtherViewControllerSectionCrashOnNextAppLoad:
+            return _crashOnNextAppLoadButtons.count;
+        default:
+            assert(NO);
+            return 0;
     }
-    
-    assert(NO);
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleCell" forIndexPath:indexPath];
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     cell.textLabel.textColor = [UIColor blueColor];
-    
-    if(indexPath.section == kUsernameSection) {
-        NSString *username = _usernames[indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"Set Username: %@", username];
-    } else if(indexPath.section == kMetaDataSection) {
-        NSString *gameLevel = _metadata[indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"Set Level: %@", gameLevel];
-    } else if(indexPath.section == kBreadcrumbsSection) {
-        NSString *breadcrumb = _breadcrumbs[indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"Leave: '%@'", breadcrumb];
-    } else if(indexPath.section == kOutOutStatus) {
-        cell.textLabel.text = _optOut[indexPath.row];
+    switch (indexPath.section) {
+        case CROtherViewControllerSectionUsername:
+        {
+            NSString *username = _usernames[(NSUInteger)indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"Set Username: %@", username];
+            break;
+        }
+        case CROtherViewControllerSectionMetaData:
+        {
+            NSString *gameLevel = _metadata[(NSUInteger)indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"Set Level: %@", gameLevel];
+            break;
+        }
+        case CROtherViewControllerSectionBreadcrumbs:
+        {
+            NSString *breadcrumb = _breadcrumbs[(NSUInteger)indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"Leave: '%@'", breadcrumb];
+            break;
+        }
+        case CROtherViewControllerSectionOptOutStatus:
+            cell.textLabel.text = _optOut[(NSUInteger)indexPath.row];
+            break;
+        case CROtherViewControllerSectionCrashOnNextAppLoad:
+            cell.textLabel.text = _crashOnNextAppLoadButtons[(NSUInteger)indexPath.row];
+            break;
+        default:
+            break;
     }
-
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if(section == kUsernameSection) {
-        return @"Set Username:";
-    } else if(section == kMetaDataSection) {
-        return @"Set Metadata:";
-    } else if(section == kBreadcrumbsSection) {
-        return @"Leave Breadcrumb:";
-    } else if(section == kOutOutStatus) {
-        BOOL isOptedOut = [Crittercism getOptOutStatus];
-        return [NSString stringWithFormat:@"Opt-out Status: %@", isOptedOut ? @"YES" : @"NO" ];
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case CROtherViewControllerSectionUsername:
+            return @"Set Username:";
+        case CROtherViewControllerSectionMetaData:
+            return @"Set Metadata:";
+        case CROtherViewControllerSectionBreadcrumbs:
+            return @"Leave Breadcrumb:";
+        case CROtherViewControllerSectionOptOutStatus:
+        {
+            BOOL isOptedOut = [Crittercism getOptOutStatus];
+            return [NSString stringWithFormat:@"Opt-out Status: %@", isOptedOut ? @"YES":@"NO"];
+        }
+        case CROtherViewControllerSectionCrashOnNextAppLoad:
+        {
+            BOOL shouldCrashOnNextAppLoad = [self.crashOnNextAppLoad shouldCrashOnNextAppLoad];
+            return [NSString stringWithFormat:@"Next App Load: %@", shouldCrashOnNextAppLoad ? @"Crash" : @"Normal Start"];
+        }
+        default:
+            assert(NO);
+            return @"";
     }
-    
-    assert(NO);
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == kUsernameSection) {
-        [Crittercism setUsername:_usernames[indexPath.row]];
-    } else if (indexPath.section == kMetaDataSection) {
-        [Crittercism setValue:_metadata[indexPath.row] forKey:@"Game Level"];
-    } else if (indexPath.section == kBreadcrumbsSection) {
-        [Crittercism leaveBreadcrumb:_breadcrumbs[indexPath.row]];
-    } else if (indexPath.section == kOutOutStatus) {
-        if (indexPath.row == 0) {
-            [Crittercism setOptOutStatus:YES];
-        } else {
-            [Crittercism setOptOutStatus:NO];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
+        case CROtherViewControllerSectionUsername:
+            [Crittercism setUsername:_usernames[indexPath.row]];
+            break;
+        case CROtherViewControllerSectionMetaData:
+            [Crittercism setValue:_metadata[indexPath.row] forKey:@"Game Level"];
+            break;
+        case CROtherViewControllerSectionBreadcrumbs:
+            [Crittercism leaveBreadcrumb:_breadcrumbs[indexPath.row]];
+            break;
+        case CROtherViewControllerSectionOptOutStatus:
+        {
+            BOOL optOutStatus = (indexPath.row == 0);
+            [Crittercism setOptOutStatus:optOutStatus];
+            [tableView reloadData];
+            break;
         }
-
-        [tableView reloadData];
+        case CROtherViewControllerSectionCrashOnNextAppLoad:
+        {
+            BOOL shouldCrashOnNextAppLoad = (indexPath.row == 0);
+            if (shouldCrashOnNextAppLoad) {
+                [self.crashOnNextAppLoad setCrashOnNextAppLoad];
+            }
+            else {
+                [self.crashOnNextAppLoad setNormalStartOnNextAppLoad];
+            }
+            [tableView reloadData];
+            break;
+        }
+        default:
+            break;
     }
-
     [self performSelector:@selector(fadeSelection:)
                withObject:@(YES)
                afterDelay:0.3];
 }
 
-- (void)fadeSelection:(BOOL)animated
-{
+- (void)fadeSelection:(BOOL)animated {
     NSIndexPath *selection = [self.tView indexPathForSelectedRow];
     if (selection) {
         [self.tView deselectRowAtIndexPath:selection animated:animated];

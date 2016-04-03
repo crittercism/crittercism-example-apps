@@ -22,17 +22,16 @@
 - (id)initWithDelegate:(id<NetworkAPIDelegate>)delegate
 {
     self = [super init];
-
+    
     if (self) {
         _delegate = delegate;
     }
-
+    
     return self;
 }
 
-- (void)performRequest:(NSURLRequest *)request onQueue:(NSOperationQueue *)queue
-{
-    [NSException raise:@"not implemented" format:nil];
+- (void)performRequest:(NSURLRequest *)request onQueue:(NSOperationQueue *)queue {
+    [NSException raise:@"not implemented" format:@"Subclasses of CRNetworkAPI must implement performRequest:onQueue:"];
 }
 
 @end

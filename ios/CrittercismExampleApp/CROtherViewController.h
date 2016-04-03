@@ -16,6 +16,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import <PassKit/PassKit.h>
 
 @interface CROtherViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tView;

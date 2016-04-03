@@ -23,7 +23,7 @@
 @end
 
 @interface CRNetworkAPI : NSObject
-@property (nonatomic, strong) id<NetworkAPIDelegate> delegate;
+@property (nonatomic) id<NetworkAPIDelegate> delegate;
 
 - (id)initWithDelegate:(id<NetworkAPIDelegate>)delegate;
 - (void)performRequest:(NSURLRequest *)request onQueue:(NSOperationQueue *)queue;

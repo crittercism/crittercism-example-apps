@@ -31,7 +31,7 @@ do { \
 
 // Index 0 represents the function that carshed.
 // Index 1 is what called the function at index 0
-@property (nonatomic, strong) NSMutableArray *stack;
+@property (nonatomic) NSMutableArray *stack;
 
 @end
 

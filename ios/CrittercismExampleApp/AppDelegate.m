@@ -18,6 +18,7 @@
 #import "AppDelegate.h"
 #import <Crittercism/Crittercism.h>
 #import "GlobalLog.h"
+#import "CRCrashOnNextAppLoad.h"
 @interface AppDelegate ()
 
 @end
@@ -62,10 +63,25 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+  
+    CRCrashOnNextAppLoad* crashOnNextAppLoad = [[CRCrashOnNextAppLoad alloc] init];
+    BOOL shouldCrash = [crashOnNextAppLoad shouldCrashOnNextAppLoad];
+ 
+    // [AppDelegate applicationDidBecomeActive:] is called first before NSNotification is fired.
+    // This is the perfect place to test crash during app load
+    if (shouldCrash) {
+        [crashOnNextAppLoad setNormalStartOnNextAppLoad];
+        [self crashApp];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)crashApp {
+    int *nullVariable = NULL;
+    NSLog(@"%d", *nullVariable);
 }
 
 @end

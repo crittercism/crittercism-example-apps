@@ -19,8 +19,8 @@
 #import "CRNetworkAPI.h"
 
 @interface CRNSURLConnectionDelegate : NSObject
-@property (nonatomic, strong) NSURLResponse *response;
-@property (nonatomic, strong) id<NetworkAPIDelegate> delegate;
+@property (nonatomic) NSURLResponse *response;
+@property (nonatomic) id<NetworkAPIDelegate> delegate;
 
 - (id)initWithNetworkApiDelegate:(id<NetworkAPIDelegate>)delegate;
 
