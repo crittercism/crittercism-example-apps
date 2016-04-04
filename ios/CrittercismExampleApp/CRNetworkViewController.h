@@ -14,13 +14,9 @@
  * limitations under the License.
  */
 
-
-#import <UIKit/UIKit.h>
 #import "CRNSURLConnectionWithDelegate.h"
+#import <UIKit/UIKit.h>
 
 @interface CRNetworkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NetworkAPIDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tView;
-
-
-
 @end
