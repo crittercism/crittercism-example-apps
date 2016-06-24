@@ -42,6 +42,7 @@
 		20DAA0C61A157E6300CC9216 /* CRErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0C51A157E6300CC9216 /* CRErrorViewController.m */; };
 		20DAA0C91A157E7500CC9216 /* CRNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0C81A157E7500CC9216 /* CRNetworkViewController.m */; };
 		20DAA0CF1A157E9500CC9216 /* CROtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */; };
+		2EBAC2081D1DEF940078C93C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EBAC2071D1DEF940078C93C /* Default-568h@2x.png */; };
 		9F5EACB31AB48DF3001CA533 /* CRCustomError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB21AB48DF3001CA533 /* CRCustomError.m */; };
 		9F5EACB61AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB51AB4A5BA001CA533 /* CRSingleButtonTableViewCell.m */; };
 		9F5EACB91AB727D8001CA533 /* CRFourButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5EACB81AB727D8001CA533 /* CRFourButtonTableViewCell.m */; };
@@ -114,6 +115,7 @@
 		20DAA0C81A157E7500CC9216 /* CRNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRNetworkViewController.m; sourceTree = "<group>"; };
 		20DAA0CD1A157E9500CC9216 /* CROtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CROtherViewController.h; sourceTree = "<group>"; };
 		20DAA0CE1A157E9500CC9216 /* CROtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CROtherViewController.m; sourceTree = "<group>"; };
+		2EBAC2071D1DEF940078C93C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9F5EACB11AB48DF3001CA533 /* CRCustomError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCustomError.h; sourceTree = "<group>"; };
 		9F5EACB21AB48DF3001CA533 /* CRCustomError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCustomError.m; sourceTree = "<group>"; };
 		9F5EACB41AB4A5BA001CA533 /* CRSingleButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSingleButtonTableViewCell.h; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		20DAA08F1A157DFC00CC9216 = {
 			isa = PBXGroup;
 			children = (
+				2EBAC2071D1DEF940078C93C /* Default-568h@2x.png */,
 				20DAA09A1A157DFC00CC9216 /* CrittercismExampleApp */,
 				20DAA0991A157DFC00CC9216 /* Products */,
 				3241977AD4094FB109AB9407 /* Pods */,
@@ -357,7 +360,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CR;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Crittercism, inc.";
 				TargetAttributes = {
 					20DAA0971A157DFC00CC9216 = {
@@ -396,6 +399,7 @@
 				0AD566BC1CAF365800903E36 /* back_gray.png in Resources */,
 				2080ADFA1A3F9C0200A0E815 /* 116-controller@2x.png in Resources */,
 				205013A91A69D3560039BE78 /* 163-glasses-1@2x.png in Resources */,
+				2EBAC2081D1DEF940078C93C /* Default-568h@2x.png in Resources */,
 				20DAA0AA1A157DFC00CC9216 /* Main.storyboard in Resources */,
 				20DAA0AF1A157DFC00CC9216 /* LaunchScreen.xib in Resources */,
 				0AD566BD1CAF365800903E36 /* forward_gray.png in Resources */,
@@ -505,6 +509,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -563,7 +568,6 @@
 		};
 		20DAA0BF1A157DFC00CC9216 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7FB12F19FD7182FDA3EA0EB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -574,9 +578,10 @@
 					"$(PROJECT_DIR)/Crittercism/iOS",
 				);
 				INFOPLIST_FILE = CrittercismExampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.crittercism.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CrittercismExampleApp;
 				PROVISIONING_PROFILE = "";
 			};
@@ -584,7 +589,6 @@
 		};
 		20DAA0C01A157DFC00CC9216 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBD4EA70ABD73D2320E9E691 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -595,9 +599,10 @@
 					"$(PROJECT_DIR)/Crittercism/iOS",
 				);
 				INFOPLIST_FILE = CrittercismExampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.crittercism.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CrittercismExampleApp;
 				PROVISIONING_PROFILE = "";
 			};

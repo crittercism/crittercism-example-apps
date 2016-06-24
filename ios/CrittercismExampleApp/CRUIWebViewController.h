@@ -30,4 +30,5 @@
 @property (nonatomic, strong) NSString *withURL;
 - (IBAction)uiAction:(id)sender;
 - (IBAction)jsAction:(id)sender;
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)())completionHandler;
 @end
