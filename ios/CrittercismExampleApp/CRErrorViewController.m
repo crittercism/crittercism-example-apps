@@ -14,48 +14,42 @@
  * limitations under the License.
  */
 
-
 #import "CRErrorViewController.h"
-#import "ThreeButtonTableViewCell.h"
-#import "ActionSheetStringPicker.h"
+
 #import <Crittercism/Crittercism.h>
-#import "GlobalLog.h"
+#import "ActionSheetStringPicker.h"
 #import "CRCustomError.h"
-#import "CRSingleButtonTableViewCell.h"
 #import "CRFourButtonTableViewCell.h"
+#import "CRSingleButtonTableViewCell.h"
 
 #define kCrashSection 0
 #define kExceptionSection 1
 #define kCustomStackSection 2
 
 @interface CRErrorViewController ()
-@property (nonatomic, strong) CRCustomError *customError;
-@property (nonatomic, strong) NSArray *sectionTitles;
-@property (nonatomic, strong) NSArray *crashSection;
-@property (nonatomic, strong) NSArray *exceptionSection;
-@property (nonatomic, retain) NSString *traceCrash;
+
+@property (nonatomic) CRCustomError *customError;
+@property (nonatomic) NSArray *sectionTitles;
+@property (nonatomic) NSArray *crashSection;
+@property (nonatomic) NSArray *exceptionSection;
 @end
 
 @implementation CRErrorViewController
 
 #define SEL2STR(sel) (NSStringFromSelector(@selector(sel)))
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     _customError = [[CRCustomError alloc] init];
-
-    _sectionTitles = @[ @"Force Crash:",
-                        @"Handle Exception:",
-                        @"Custom Stack Trace:"
+    _sectionTitles = @[@"Force Crash:",
+                       @"Handle Exception:",
+                       @"Custom Stack Trace:"
                        ];
-
-    _crashSection = @[ @[ @"Uncaught Exception", SEL2STR(crashUncaughtException) ],
-                       @[ @"Segfault", SEL2STR(crashSegfault) ],
-                       @[ @"Stack Overflow", SEL2STR(crashStackOverflow) ]];
-
-    _exceptionSection = @[ @[ @"Index Out Of Bounds", SEL2STR(raiseExceptionIndexOutOfBounds) ],
-                           @[ @"Log NSError", SEL2STR(logNSError) ]];
+    _crashSection = @[@[@"Uncaught Exception", SEL2STR(crashUncaughtException)],
+                      @[@"Segfault", SEL2STR(crashSegfault)],
+                      @[@"Stack Overflow", SEL2STR(crashStackOverflow)]];
+    _exceptionSection = @[@[@"Index Out Of Bounds", SEL2STR(raiseExceptionIndexOutOfBounds)],
+                          @[@"Log NSError", SEL2STR(logNSError)]];
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -65,79 +59,63 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == kCrashSection) {
+    if (section == kCrashSection) {
         return _crashSection.count;
-    } else if(section == kExceptionSection) {
+    } else if (section == kExceptionSection) {
         return _exceptionSection.count;
-    } else if(section == kCustomStackSection) {
+    } else if (section == kCustomStackSection) {
         return [_customError numberOfFrames] + 1;
     }
-
     assert(NO);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return _sectionTitles[section];
+    return _sectionTitles[(NSUInteger)section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
-         simpleCellForRowAtIndexPath:(NSIndexPath *)indexPath
-         andSectionDescription:(NSArray *)sectionDescription
-{
+   simpleCellForRowAtIndexPath:(NSIndexPath *)indexPath
+         andSectionDescription:(NSArray *)sectionDescription {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SingleButtonCell"
                                                             forIndexPath:indexPath];
-
     UIButton *button = [(CRSingleButtonTableViewCell *)cell button];
-
     [button setTitle:sectionDescription[indexPath.row][0] forState:UIControlStateNormal];
     [button addTarget:self
                action:NSSelectorFromString(sectionDescription[indexPath.row][1])
      forControlEvents:UIControlEventTouchUpInside];
-
     return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
-
-    if(indexPath.section == kCrashSection) {
+    if (indexPath.section == kCrashSection) {
         return [self tableView:tableView simpleCellForRowAtIndexPath:indexPath andSectionDescription:_crashSection];
-    } else if(indexPath.section == kExceptionSection) {
+    } else if (indexPath.section == kExceptionSection) {
         return [self tableView:tableView simpleCellForRowAtIndexPath:indexPath andSectionDescription:_exceptionSection];
-    } else if(indexPath.section == kCustomStackSection) {
-        if(indexPath.row == [_customError numberOfFrames]) {
-
+    } else if (indexPath.section == kCustomStackSection) {
+        if (indexPath.row == [_customError numberOfFrames]) {
             CRFourButtonTableViewCell *fourButtonCell = [tableView dequeueReusableCellWithIdentifier:@"StackTraceControllsCell" forIndexPath:indexPath];
-
             [fourButtonCell.aButton addTarget:self
-                       action:@selector(addStackFrame)
-             forControlEvents:UIControlEventTouchUpInside];
-
+                                       action:@selector(addStackFrame)
+                             forControlEvents:UIControlEventTouchUpInside];
             [fourButtonCell.bButton addTarget:self
-                             action:@selector(clearStackTrace)
-                   forControlEvents:UIControlEventTouchUpInside];
-
+                                       action:@selector(clearStackTrace)
+                             forControlEvents:UIControlEventTouchUpInside];
             [fourButtonCell.cButton addTarget:_customError
-                             action:@selector(raiseException)
-                   forControlEvents:UIControlEventTouchUpInside];
-
+                                       action:@selector(raiseException)
+                             forControlEvents:UIControlEventTouchUpInside];
             [fourButtonCell.dButton addTarget:_customError
-                             action:@selector(crash)
-                   forControlEvents:UIControlEventTouchUpInside];
-
+                                       action:@selector(crash)
+                             forControlEvents:UIControlEventTouchUpInside];
             cell = fourButtonCell;
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"StackFrameCell"
                                                    forIndexPath:indexPath];
-
             cell.textLabel.text = [_customError frameAtIndex:indexPath.row];
         }
     }
-
     NSAssert(cell, @"no cell for index path: %@", indexPath);
-
     return cell;
 }
 
@@ -148,18 +126,18 @@
                          @"Function B",
                          @"Function C",
                          @"Function D" ];
-
+    
     [ActionSheetStringPicker showPickerWithTitle:@"Pick a function"
                                             rows:colors
                                 initialSelection:0
                                        doneBlock:^(ActionSheetStringPicker *picker,
                                                    NSInteger selectedIndex,
                                                    id selectedValue)
-    {
-        [_customError addFrame:selectedIndex];
-        [self.tView reloadData];
-    } cancelBlock:^(ActionSheetStringPicker *picker) {
-    } origin:self.view];
+     {
+         [_customError addFrame:selectedIndex];
+         [self.tView reloadData];
+     } cancelBlock:^(ActionSheetStringPicker *picker) {
+     } origin:self.view];
 }
 
 - (void)raiseExceptionIndexOutOfBounds {
@@ -189,11 +167,11 @@
     // Allocate some memory on the stack to make the stack overflow
     // go faster
     NSInteger myIntegers[2048];
-
+    
     for (int i = 0; i < 2048; i++) {
         myIntegers[i] = 0;
     }
-
+    
     [self crashStackOverflow];
 }
 

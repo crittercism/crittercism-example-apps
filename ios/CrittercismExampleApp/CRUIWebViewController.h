@@ -14,16 +14,21 @@
  * limitations under the License.
  */
 
-
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface CRUIWebViewController : UIViewController <UIWebViewDelegate>
-
-@property (nonatomic, strong) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
-
-- (IBAction)goBack:(id)sender;
-- (IBAction)goForward:(id)sender;
-
+@interface WebController : UIViewController <UITextFieldDelegate,UIToolbarDelegate,UIWebViewDelegate,WKNavigationDelegate,WKUIDelegate>
+@property (strong, nonatomic) IBOutlet UIToolbar *topToolBar;
+@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *uiButton;
+@property (strong, nonatomic) IBOutlet UIWebView *uiWebView;
+@property (strong, nonatomic) WKWebView *wkWebView;
+@property (strong, nonatomic) IBOutlet UIToolbar *bottomToolBar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *jsButton;
+@property (nonatomic, strong) NSString *withURL;
+- (IBAction)uiAction:(id)sender;
+- (IBAction)jsAction:(id)sender;
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)())completionHandler;
 @end
